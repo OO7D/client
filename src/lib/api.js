@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 const client = axios.create({
-  baseURL: "",
+  baseURL: '',
 });
 
 // api 작성 공간
