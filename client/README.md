@@ -1,0 +1,2 @@
+### 2021 HUFS CAPSTONE DESIGN PROJECT
+# OO7D : Outfit Of 7he Day
