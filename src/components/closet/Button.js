@@ -7,7 +7,7 @@ const ButtonWrap = Styled.div`
     width: 150px;
     height: 140px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     background-color: #CABFC5;
     color: white;

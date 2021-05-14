@@ -31,6 +31,7 @@ const MainHeaderWrap = Styled.div`
 const getTitle = path => {
   switch (path) {
     case '/closet':
+    case '/closet/grid':
       return '옷장';
     default:
       return '';
