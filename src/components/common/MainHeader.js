@@ -33,6 +33,13 @@ const getTitle = path => {
     case '/closet':
     case '/closet/grid':
       return '옷장';
+    case '/closet/new':
+      return '옷 추가';
+    case '/closet/complete':
+      return '완료';
+    case '/recommend':
+    case '/recommend/grid':
+      return '옷 추천';
     default:
       return '';
   }

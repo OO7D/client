@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../components/closet/Button';
+import shirt from '../assets/shirt.png';
+import question from '../assets/question.png';
+import camera from '../assets/camera.svg';
 
 const ClosetMainWrap = Styled.div`
   display: flex;
@@ -24,16 +27,38 @@ const ClosetMainWrap = Styled.div`
   }
 `;
 
-const ClosetMain = ({ history }) => {
+const ClosetMain = ({ history, match }) => {
+  const mode = match.path === '/closet' ? 'main' : '';
+
   return (
     <ClosetMainWrap>
-      <div className="title">상민님, 오늘은 OOO 어떠세요?</div>
+      <div className="title">
+        {mode ? '상민님, 오늘은 OOO 어떠세요?' : '옷 추천을 도와드릴까요?'}
+      </div>
       <div className="buttons">
-        <Button
-          text={'옷장 보기'}
-          onClickFunc={() => history.push('/closet/grid')}
-        />
-        <Button text={'새 옷 추가하기'} />
+        {mode ? (
+          <Button
+            text={'옷장 보기'}
+            onClickFunc={() => history.push('/closet/grid')}
+            image={shirt}
+          />
+        ) : (
+          <Button
+            text={'옷장에서 옷 고르기'}
+            onClickFunc={() => history.push('/recommend/grid')}
+            image={shirt}
+            size="15px"
+          />
+        )}
+        {mode ? (
+          <Button
+            text={'새 옷 추가하기'}
+            onClickFunc={() => history.push('/closet/new')}
+            image={camera}
+          />
+        ) : (
+          <Button text={'랜덤으로 추천받기'} size="15px" image={question} />
+        )}
       </div>
     </ClosetMainWrap>
   );

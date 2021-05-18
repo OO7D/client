@@ -11,12 +11,25 @@ const ClosetBoxWrap = Styled.div`
     width: inherit;
     height: inherit;
   }
+  input {
+    z-index: 2;
+    position: relative;
+    top: -100px;
+    left: 70px;
+    width: 22px;
+    height: 22px;
+  }
 `;
 
-const ClosetBox = ({ image }) => {
+const ClosetBox = ({ id, image, setSelected, mode }) => {
   return (
     <ClosetBoxWrap>
       <img src={image} />
+      {mode ? (
+        ''
+      ) : (
+        <input type="radio" name="select" onClick={() => setSelected(id)} />
+      )}
     </ClosetBoxWrap>
   );
 };

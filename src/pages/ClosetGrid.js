@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
 import ClosetBar from '../components/closet/ClosetBar';
 import ClosetBox from '../components/closet/ClosetBox';
 import sample1 from '../assets/image/sample1.jpg';
 import deleteIcon from '../assets/delete.svg';
+import { withRouter } from 'react-router-dom';
 
 const ClosetGridWrap = Styled.div`
   width: 100vw;
@@ -21,7 +22,7 @@ const ClosetGridWrap = Styled.div`
     column-gap: 10px;
     overflow: scroll;
   }
-  .delete {
+  .button {
     width: 90vw;
     margin-top: 40px;
     display: flex;
@@ -32,36 +33,72 @@ const ClosetGridWrap = Styled.div`
       width: 40px;
     }
   }
+
+  .submit {
+    font-size: 20px;
+    color: white;
+    background-color: #F79C43;
+    width: 70px;
+    height: 40px;
+    border-radius: 7px;
+    border: none;
+  }
 `;
 
-const ClosetGrid = () => {
+const ClosetGrid = ({ match }) => {
+  const mode = match.path === '/closet/grid' ? 'closet' : '';
+  const [selected, setSelected] = useState(null);
+  console.log(selected);
+  const imageList = [
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+    sample1,
+  ];
+
   return (
     <>
       <ClosetBar />
       <ClosetGridWrap>
         <div className="box">
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
-          <ClosetBox image={sample1} />
+          {imageList.map((image, index) => {
+            return (
+              <ClosetBox
+                key={index}
+                id={index}
+                image={image}
+                setSelected={setSelected}
+                mode={mode}
+              />
+            );
+          })}
         </div>
-        <div className="delete">
-          <img src={deleteIcon} />
+        <div className="button">
+          {mode ? (
+            <img src={deleteIcon} />
+          ) : (
+            <button
+              className="submit"
+              style={{ backgroundColor: selected ? '#F79C43' : 'gray' }}
+            >
+              선택
+            </button>
+          )}
         </div>
       </ClosetGridWrap>
     </>
   );
 };
 
-export default ClosetGrid;
+export default withRouter(ClosetGrid);
