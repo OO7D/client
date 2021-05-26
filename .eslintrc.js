@@ -13,5 +13,6 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: { 'no-unused-vars': 'off' },
+  // SY: props 전달 에러 발생하여 'react/prop-types': 'off' 추가
+  rules: { 'no-unused-vars': 'off', 'react/prop-types': 'off' },
 };

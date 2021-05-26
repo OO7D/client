@@ -1,0 +1,61 @@
+/* SY: 바 형태 설정 */
+input[type='range']{
+  /* SY: 네모 모양으로 bar를 채우는 것이기 때문에 overflow를 hidden으로 하지 않으면 문제 발생 */
+  overflow: hidden;
+  width: 250px;
+  height: 14px;
+  -webkit-appearance: none;
+  background-color: #C4C4C4;
+  outline: none;
+  /* border-radius: 10px; */
+  margin-left: 8px;
+}
+
+/* SY: 커서 모양과 색 설정, 커서 움직이는 만큼 색 채우게 설정 */
+input[type='range']::-webkit-slider-thumb{
+  overflow-x: visible;
+  width: 25px;
+  -webkit-appearance: none;
+  height: 25px;
+  cursor: pointer;
+  background: #F79C43;
+  /* SY: 만약 커서 원 모양으로 할 것이라면 아래의 문장 실행*/
+  /* border-radius: 50%; */
+  box-shadow: -250px 0 0 250px #F79C43;
+}
+
+.ratingBar {
+  display: flex;
+  /* flex-flow: row wrap; */
+  justify-content: center;
+  align-items: center; 
+}
+
+.score{
+  font-size: 14px;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#leftScore{
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+
+#rightScore{
+  margin-left: 7px;
+  font-weight: bold;
+}
+
+#rating {
+  width: 100px;
+  height: 30px;
+  /* margin-top: 7px; */
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
