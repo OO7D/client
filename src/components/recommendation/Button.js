@@ -13,6 +13,10 @@ const ButtonWrap = Styled.div`
     font-size: 14px;
     font-weight: bold;
   }
+  .btn:focus {
+    border: none;
+    outline: none;
+  }
   #btn2 {
     margin-left: 12px;
   }

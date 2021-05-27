@@ -14,18 +14,15 @@
   height: 20px;
   margin-bottom: 13px;
 }
-
 #snsContainer{
   display: flex;
 }
-
 #kakao-link-btn{
   width: 50px;
   height: 50px;
   display: flex;
   justify-content: center;
 }
-
 #facebook{
   width: 50px;
   height: 50px;
@@ -33,7 +30,6 @@
   display: flex;
   justify-content: center;
 }
-
 #twitter{
   width: 50px;
   height: 50px;
@@ -41,4 +37,3 @@
   display: flex;
   justify-content: center;
 }
-

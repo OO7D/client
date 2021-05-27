@@ -18,6 +18,10 @@ const MakeButtonWrap = Styled.div`
     border: 1px solid #CABFC5;
     font-weight: bold;
   }
+  .btn: focus {
+    outline: none;
+    border: none;
+  }
   #btn1{
     margin-right: 19px;
   }

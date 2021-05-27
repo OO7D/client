@@ -10,7 +10,6 @@ input[type='range']{
   /* border-radius: 10px; */
   margin-left: 8px;
 }
-
 /* SY: 커서 모양과 색 설정, 커서 움직이는 만큼 색 채우게 설정 */
 input[type='range']::-webkit-slider-thumb{
   overflow-x: visible;
@@ -23,14 +22,12 @@ input[type='range']::-webkit-slider-thumb{
   /* border-radius: 50%; */
   box-shadow: -250px 0 0 250px #F79C43;
 }
-
 .ratingBar {
   display: flex;
   /* flex-flow: row wrap; */
   justify-content: center;
   align-items: center; 
 }
-
 .score{
   font-size: 14px;
   width: 40px;
@@ -39,18 +36,14 @@ input[type='range']::-webkit-slider-thumb{
   font-weight: bold;
   margin-top: 10px;
 }
-
 #leftScore{
   margin-left: 15px;
   font-weight: bold;
 }
-
-
 #rightScore{
   margin-left: 7px;
   font-weight: bold;
 }
-
 #rating {
   width: 100px;
   height: 30px;

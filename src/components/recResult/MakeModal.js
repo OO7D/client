@@ -19,11 +19,13 @@ const MakeModalWrap = Styled.div`
     border: 1px solid #CABFC5;
     font-weight: bold;
   }
-
+  .btn:focus {
+    border: none;
+    outline: none;
+  }
   #ratingBtn{
     margin-top: 37px;
   }
-
   #afterScore{
     width: 150px;
     height: 50px;
@@ -33,7 +35,6 @@ const MakeModalWrap = Styled.div`
     text-align: center;
     font-size: 14px;
   }
-
   #okBtn{
     margin-left: 82px;
     margin-top: 28px;
