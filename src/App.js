@@ -8,6 +8,7 @@ import RandomRecResult from './pages/RandomRecResult';
 import SelectedRecResult from './pages/SelectedRecResult';
 import MainHeader from './components/common/MainHeader';
 import LoadingMainHeader from './components/common/LoadingMainHeader';
+import ClothSelect from './pages/ClothSelect';
 
 function App() {
   // SY: 원래 location.pathname을 사용하려 했으나 그렇게 사용할 경우 undefined가 나와서 window. 사용
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/recommendation" component={Recommendation}/>
         <Route exact path="/recommendation/result_random" component={RandomRecResult}/>
         <Route exact path="/recommendation/result_selected" component={SelectedRecResult}/>
+        <Route exact path="/recommendation/cloth_select" component={ClothSelect}/>
       </BrowserRouter>  
     );
   else

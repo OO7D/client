@@ -31,8 +31,9 @@ const MakeButton = props => {
   return (
     <MakeButtonWrap>
       <div id='buttonContainer'>
-        <a><input type='button' className='btn' id='btn1' value='다시 추천받기'></input></a>
-        <a href='/'><input type='button' className='btn' id='btn2' value='다시 선택하기'></input></a>
+        {/* SY: !서버! 함수 호출 */}
+        <a href='/recommendation/loading_random'><input type='button' className='btn' id='btn1' value='다시 추천받기'></input></a>
+        <a href='/recommendation/cloth_select'><input type='button' className='btn' id='btn2' value='다시 선택하기'></input></a>
       </div>
     </MakeButtonWrap>
   );

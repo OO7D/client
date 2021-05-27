@@ -14,7 +14,6 @@ const KakaoShareButton = () => {
       // 중복 초기화 방지
       if(!kakao.isInitialized()){ 
         kakao.init('a85e5cd65888b2478de0e92c25640129');
-        console.log('OK!!');
       }
       kakao.Link.createDefaultButton({
         // render에서 container에 해당하는 id를 찾아 그 부분에 렌더링
@@ -41,7 +40,6 @@ const KakaoShareButton = () => {
       })
     }
   }
-  console.log('return 전 문장(제일 마지막)??');
 
   return (
     <div className="kakao-share-button">

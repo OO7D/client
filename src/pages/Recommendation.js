@@ -46,7 +46,7 @@ const Recommendation = () => {
         <div id='title'>옷 추천을 도와드릴까요?</div>
       </div>
       <div id='buttonContainer'>
-        <a href='/recommendation/loading_selected'>
+        <a href='/recommendation/cloth_select'>
           <Button id='btn1' text='옷장에서 옷 고르기' svg={Cloth}></Button>
         </a>
         <a href='/recommendation/loading_random'>
