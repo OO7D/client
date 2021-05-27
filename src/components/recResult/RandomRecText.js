@@ -9,7 +9,7 @@ const RandomRecTextWrap = Styled.div`
     align-items: center; 
   }
   .line{
-    width: 350px;
+    width: 360px;
     height: 30px;
     font-size: 14px;
     text-align: center;
@@ -43,7 +43,7 @@ const RandomRecText = props => {
           <span className='_props'> {look}</span>에 어울리는 날씨예요!
         </div>
         <div className='line' id='line2'>평소 <span className='_props'>{name}</span>님이 선호하는 
-          <span className='_props'> {style}</span>과 색상 조합으로
+          <span className='_props'> {style}</span> 스타일과 색상 조합으로
         </div>
         <div className='line' id='line3'>예쁘게 코디해봤어요! 마음에 드시나요?</div>
       </div>
