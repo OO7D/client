@@ -16,7 +16,6 @@ const SelectedRecResultWrap = Styled.div`
     justify-content: center;
     align-items: center;
   }
-
   #statement{
     width: 230px;
     height: 16px;
@@ -25,24 +24,20 @@ const SelectedRecResultWrap = Styled.div`
     margin-top: 51px;
     font-weight: bold;
   }
-
   #boxContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 35px;
   }
-
   #blackFilledHeart{
     margin-left: 12px;
     margin-right: 13px;
   }
-
   #leftBox{
     display: flex;
     justify-content: center;
   }
-
   #rightBox{
     margin-left: 30px;
     display: flex;
@@ -60,7 +55,9 @@ const SelectedRecResult = () => {
     {season: '봄/가을'},
     {color: 'white'},
     {src: {blouse}},
-    {fileName: 'blouse'}
+    {fileName: 'blouse'},
+    {isWebCrawl: 'false'},
+    {href: 'https://www.naver.com/'}
   ];
   
   const lowerState = [
@@ -69,7 +66,9 @@ const SelectedRecResult = () => {
     {season: '봄/가을'},
     {color: 'black'},
     {src: {skirt}},
-    {fileName: 'skirt'}
+    {fileName: 'skirt'},
+    {isWebCrawl: 'true'},
+    {href: ''}
   ]
   
   const userState = [
@@ -83,11 +82,20 @@ const SelectedRecResult = () => {
       </div>
       {/* SY: 상의, 하의 추천 결과 보여주는 두 개의 박스 */}
       <div id='boxContainer'>
-        {/* SY: 상의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
-        <ClothBoxSelected id='leftBox' name={upperState[0].name} category={upperState[1].category} season={upperState[2].season} color={upperState[3].color} src={upperState[4].src} fileName={upperState[5].fileName}></ClothBoxSelected>
+        {/* SY: ClothBox에서 id를 넘겨줌으로써 어떤 박스의 하트가 클릭됐는지, 어떤 박스가 WebCrawling한 결과인지 판단할 수 있게 함 */}
+        {/* SY: 상의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
+        <ClothBoxSelected id='leftBox'
+          name={upperState[0].name} category={upperState[1].category} season={upperState[2].season} 
+          color={upperState[3].color} src={upperState[4].src} fileName={upperState[5].fileName} 
+          isWebCrawl={upperState[6].isWebCrawl} href={upperState[7].href}>
+        </ClothBoxSelected>
         <img id='blackFilledHeart' src={blackFilledHeart} alt='blackFilledHeart' />
-        {/* SY: 하의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
-        <ClothBox id='righttBox' name={lowerState[0].name} category={lowerState[1].category} season={lowerState[2].season} color={lowerState[3].color} src={lowerState[4].src} fileName={lowerState[5].fileName}></ClothBox>
+        {/* SY: 하의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
+        <ClothBox id='righttBox' 
+          name={lowerState[0].name} category={lowerState[1].category} season={lowerState[2].season} 
+          color={lowerState[3].color} src={lowerState[4].src} fileName={lowerState[5].fileName}
+          isWebCrawl={lowerState[6].isWebCrawl} href={lowerState[7].href}>
+        </ClothBox>
       </div>
       {/* SY: 추천 관련 설명 문구 */}
       <RandomRecText season={upperState[2].season} look={upperState[1].category} style={userState[1].style} name={userState[0].name}></RandomRecText>

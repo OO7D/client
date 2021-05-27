@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 
 const ClothBoxWrap = Styled.div`
@@ -10,7 +10,6 @@ const ClothBoxWrap = Styled.div`
   background: #C4C4C4;
   border-radius: 7%;
 }
-
 #innerBox{
   width: 107px;
   height: 105px;
@@ -19,20 +18,17 @@ const ClothBoxWrap = Styled.div`
   border-radius: 5%;
   margin: 11.5px;
 }
-
 #cloth{
   width: 105px;
   height: 103px;
   border-radius: 5%;
 }
-
 #heartIcon{
   position: absolute;
   float: right;
   margin-top: 6px;
   margin-left: -20px;
 }
-
 #goToShop{
   position: absolute;
   font-size: 6px;
@@ -45,9 +41,13 @@ const ClothBoxWrap = Styled.div`
   color: white;
   border-radius: 15%;
   border: 1px solid black;
-  opacity: 70%
+  opacity: 70%;
+  display: none;
 }
-
+#goToShop a{
+  text-decoration: none;
+  color: white;
+}
 #clothNameBox{
   width: 94px;
   height: 20px;
@@ -55,7 +55,6 @@ const ClothBoxWrap = Styled.div`
   text-align: center;
   margin-left: 18px;
 }
-
 #clothName{
   display: inline-block;
   margin-bottom: 2px;
@@ -63,14 +62,12 @@ const ClothBoxWrap = Styled.div`
   text-align: center;
   font-weight: bold;
 }
-
 #clothColor{
   display: inline-block;
   margin-left:24px;
   margin-top: 12px;
   font-weight: bold;
 }
-
 #category{
   width: 60px;
   height: 15px;
@@ -79,7 +76,6 @@ const ClothBoxWrap = Styled.div`
   font-size: 9px;
   font-weight: bold;
 }
-
 #season{
   width: 60px;
   height: 15px;
@@ -97,7 +93,20 @@ const ClothBox = props => {
   const color = useState(props.color)[0];
   const id = useState(props.id)[0];
   const src = useState(props.src)[0];
-  const fileName = useState(props.fileName)[0];  
+  const fileName = useState(props.fileName)[0];
+  const isWebCrawl = useState(props.isWebCrawl)[0];
+  const href = useState(props.href)[0];
+
+  useEffect(() => {
+    // SY: 웹크롤링한 결과가 반영될 경우 쇼핑몰로 바로 이동할 수 있는 div 태그가 작동하게 함(박스가 두 개이기 때문에 아래와 같이 조건을 나눠서 분기)
+    if (isWebCrawl === 'true') {
+      const _goToShop = document.querySelectorAll('#goToShop');
+      if (id === 'leftBox') // SY: 상의가 웹크롤링한 결과일 경우
+        _goToShop[0].style.display = 'block';
+      else // SY: 하의가 웹크롤링한 결과일 경우
+        _goToShop[1].style.display = 'block';
+    }
+  },[])
 
   const setHeartColor = () => {
     // SY: 옷 추천 결과에서 상의, 하의 각각의 박스가 있기 때문에 leftBox와 rightBox로 조건을 나누어 색을 넣을 수 있게 설정
@@ -126,7 +135,7 @@ const ClothBox = props => {
           </svg>
           {/* SY: 원래 visible을 hidden으로 하다가 웹 크롤링으로 결과를 가져오면 visible로 성격을 바꿔볼까? a tag도 필요할 듯 아니면 컴포넌트를 아예 새로?*/}
           <div id='goToShop'>
-            쇼핑몰 바로가기
+            <a target="_blank" rel="noopener noreferrer" href={href}>쇼핑몰 바로가기</a>
           </div>
         </div>
         {/* SY: 옷의 이름 */}
