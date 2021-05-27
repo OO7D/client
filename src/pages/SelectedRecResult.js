@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
-import ClothBox from '../components/recResult/ClothBox';
 import ClothBoxSelected from '../components/recResult/ClothBoxSelected';
-import RandomRecText from '../components/recResult/RandomRecText';
+import SelectedRecText from '../components/recResult/SelectedRecText';
 import RatingBar from '../components/recResult/RatingBar';
 import MakeModal from '../components/recResult/MakeModal';
 import blackFilledHeart from '../assets/recResult/blackFilledHeart.svg';
@@ -49,6 +48,7 @@ const SelectedRecResult = () => {
   // SY: mode를 original과 changed 두개로 나눠 original일 경우 rating 가능, changed일 경우 SNS 공유 가능
   const mode = 'original';
   // SY: 서버를 통해 DB 정보를 가져올 수 없기에 일단은 upperState(상의), lowerState(하의), userState(사용자) 정보 생성
+  // SY: 웹크롤링 아닐 때는 빈 문자열 전달, 선택됐는지 여부 정보도 넘겨받아야 함
   const upperState = [
     {name: '쉬폰 블라우스'},
     {category: '셔츠'},
@@ -57,7 +57,8 @@ const SelectedRecResult = () => {
     {src: {blouse}},
     {fileName: 'blouse'},
     {isWebCrawl: 'false'},
-    {href: 'https://www.naver.com/'}
+    {href: 'https://www.naver.com/'},
+    {selected: 'false'}
   ];
   
   const lowerState = [
@@ -68,13 +69,20 @@ const SelectedRecResult = () => {
     {src: {skirt}},
     {fileName: 'skirt'},
     {isWebCrawl: 'true'},
-    {href: ''}
+    {href: ''},
+    {selected: 'true'}
   ]
   
   const userState = [
     {name: '소희'},
     {style: '세미정장'}
   ]
+
+  // SY: 선택된 상의 혹은 하의의 이름. SelectedRexText에 값을 전달하기 위함.
+  let selectedClothName;
+  if(upperState[8].selected === 'true') selectedClothName = upperState[0].name;
+  else selectedClothName = lowerState[0].name;  
+
   return (
     <SelectedRecResultWrap>
       <div id='stateContainer'>
@@ -83,22 +91,22 @@ const SelectedRecResult = () => {
       {/* SY: 상의, 하의 추천 결과 보여주는 두 개의 박스 */}
       <div id='boxContainer'>
         {/* SY: ClothBox에서 id를 넘겨줌으로써 어떤 박스의 하트가 클릭됐는지, 어떤 박스가 WebCrawling한 결과인지 판단할 수 있게 함 */}
-        {/* SY: 상의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
+        {/* SY: 상의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소-선택 여부 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
         <ClothBoxSelected id='leftBox'
           name={upperState[0].name} category={upperState[1].category} season={upperState[2].season} 
           color={upperState[3].color} src={upperState[4].src} fileName={upperState[5].fileName} 
-          isWebCrawl={upperState[6].isWebCrawl} href={upperState[7].href}>
+          isWebCrawl={upperState[6].isWebCrawl} href={upperState[7].href} selected={upperState[8].selected}>
         </ClothBoxSelected>
         <img id='blackFilledHeart' src={blackFilledHeart} alt='blackFilledHeart' />
-        {/* SY: 하의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
-        <ClothBox id='righttBox' 
+        {/* SY: 하의정보를 넘겨주는데, 이름-카테고리-계절-색-src-파일명-웹크롤링 여부-웹크롤링 주소-선택 여부 순으로 전달해야 함, 이때 파일명을 같이 전달하지 않으면 이미지 에러 발생 */}
+        <ClothBoxSelected id='righttBox' 
           name={lowerState[0].name} category={lowerState[1].category} season={lowerState[2].season} 
           color={lowerState[3].color} src={lowerState[4].src} fileName={lowerState[5].fileName}
-          isWebCrawl={lowerState[6].isWebCrawl} href={lowerState[7].href}>
-        </ClothBox>
+          isWebCrawl={lowerState[6].isWebCrawl} href={lowerState[7].href} selected={lowerState[8].selected}>
+        </ClothBoxSelected>
       </div>
       {/* SY: 추천 관련 설명 문구 */}
-      <RandomRecText season={upperState[2].season} look={upperState[1].category} style={userState[1].style} name={userState[0].name}></RandomRecText>
+      <SelectedRecText season={upperState[2].season} look={upperState[1].category} style={userState[1].style} name={userState[0].name} selectedClothName={selectedClothName}></SelectedRecText>
       {/* SY: 추천 결과 점수 매기는 바 */}
       <RatingBar mode={mode}></RatingBar>
       {/* SY: 점수 확인 버튼 */}

@@ -6,7 +6,7 @@ const ClothBoxSelectedWrap = Styled.div`
 #outerBox{
   width: 130px;
   height: 197px;
-  border: 1px solid black;
+  border: 1px solid #C4C4C4;
   background: #C4C4C4;
   border-radius: 7%;
 }
@@ -96,6 +96,8 @@ const ClothBoxSelected = props => {
   const fileName = useState(props.fileName)[0];
   const isWebCrawl = useState(props.isWebCrawl)[0];
   const href = useState(props.href)[0];
+  // SY: 아래 코드 때문에 ClothBox와 ClothBoxSelected 컴포넌트 구분(ClothBox는 props로 selected를 전달받지 않음)
+  const selected = useState(props.selected)[0];
 
   useEffect(() => {
     // SY: 웹크롤링한 결과가 반영될 경우 쇼핑몰로 바로 이동할 수 있는 div 태그가 작동하게 함(박스가 두 개이기 때문에 아래와 같이 조건을 나눠서 분기)
@@ -105,6 +107,13 @@ const ClothBoxSelected = props => {
         _goToShop[0].style.display = 'block';
       else // SY: 하의가 웹크롤링한 결과일 경우
         _goToShop[1].style.display = 'block';
+    }
+    if (selected === 'true') {
+      const _selected = document.querySelectorAll('#outerBox');
+      if (id === 'leftBox') // SY: 옷장에서 상의가 선택된 경우
+        _selected[0].style.border = '1px solid black';
+      else // SY: 옷장에서 하의가 선택된 경우 경우
+        _selected[1].style.border = '1px solid black';
     }
   },[])
 
