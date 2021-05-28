@@ -31,8 +31,6 @@ const SelectedLoading = () => {
   const history = useHistory();
   setTimeout(() => {
     history.push('/recommendation/result_selected');
-    // SY: App.js에서 window.location.pathname을 사용하여 헤더를 분기했기 때문에 하단의 코드를 넣어주지 않으면 화면 이동이 안 이루어짐
-    window.location.pathname = '/recommendation/result_selected';
     // SY: Functions are not valid as a React child 에러 고치기 위해 빈 태그 return
     return <></>;
   }, 10000);

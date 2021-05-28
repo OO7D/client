@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
+import { useHistory } from 'react-router';
 import ClosetBar from '../components/closet/ClosetBar';
 import ClosetBox from '../components/closet/ClosetBox';
 import sample1 from '../assets/image/sample1.jpg';
@@ -42,7 +43,7 @@ const ClothSelectWrap = Styled.div`
     height: 40px;
     border-radius: 7px;
     border: none;
-  }
+  }  
   #completeState{
     width: 170px;
     height: 50px;
@@ -69,8 +70,15 @@ const ClothSelectWrap = Styled.div`
 `;
 
 // SY: 여기서 옷 클릭할 때, 모달창 뜰 때, 확인 버튼 누를 때 id가 호출됨 (총 세 번 호출) --> useEffect?
-
 const ClothSelect = ({ match }, props) => {
+  // SY: 모달창 확인 버튼 클릭 시 페이지 이동 및 !서버! 함수 호출
+  const history = useHistory();
+  let goToRec = () => {
+    // 함수 호출
+    // SY: 로컬에 기록 남기기 위해 window.location 사용하지 않고 history.push 사용
+    history.push('/recommendation/loading_selected');
+    return <></>;
+  }
   const mode = match.path === '/closet/grid' ? 'closet' : '';
   const [selected, setSelected] = useState(null);
   console.log(selected);
@@ -100,12 +108,6 @@ const ClothSelect = ({ match }, props) => {
   const closeModal = () => {
     setVisible(false);
   }
-  // SY: 모달창 확인 버튼 클릭 시 페이지 이동 및 !서버! 함수 호출
-  const goToRec = () => {
-    // 함수 호출
-    // SY: history.push?
-    window.location.href = '/recommendation/result_selected';
-  }
   return (
     <>
       <ClosetBar />
@@ -130,7 +132,8 @@ const ClothSelect = ({ match }, props) => {
             <button
               onClick={openModal}
               className="submit"
-              style={{ backgroundColor: selected ? '#F79C43' : 'gray' }}
+              // SY: selected != null을 넣어줌으로써 초기 화면의 선택 버튼 색을 회색으로 설정
+              style={{ backgroundColor: (selected >= 0 && selected != null) ? '#F79C43' : 'gray' }}
             >
               선택
             </button>
