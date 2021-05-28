@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import SignupHeader from './SignupHeader';
 import check from '../../assets/check.svg';
 import Welcome from '../main/Welcome';
 import { Route, Link, Switch } from 'react-router-dom';
@@ -9,6 +8,28 @@ import TestSample from '../test/TestSample';
 const SignupCompleteWrap = Styled.div`
   * {
       color: #859594;
+  }
+  #circle1, #circle2 {
+    margin: 22px 6px 0 22px;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border-radius: 50%;
+    border: 2px solid #CABFC5;
+    h2 {
+      font-weight: bold;
+      color: #859594;
+      font-size: 23px;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  #circle2 {
+      margin-left: 0px;
   }
   #circle2 {
     background-color: #CABFC5;
@@ -84,7 +105,14 @@ const SignupComplete = () => {
   return (
     <>
       <SignupCompleteWrap>
-        <SignupHeader />
+        <div id="circle-container">
+          <div id="circle1">
+            <h2>1</h2>
+          </div>
+          <div id="circle2">
+            <h2>2</h2>
+          </div>
+        </div>
         <div id="box-title">
           <h2>2. 가입 성공</h2>
         </div>

@@ -3,6 +3,9 @@ import Styled from 'styled-components';
 import camera from '../../assets/camera.svg';
 import closet from '../../assets/closet.svg';
 import pretest from '../../assets/pretest.svg';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import KakaoLogout from '../../lib/KakaoLogout';
 
 const ContentsWrap = Styled.div`
   #contents-container {
@@ -70,41 +73,48 @@ const ContentsWrap = Styled.div`
   }
 `;
 
-const MainContents = () => {
+const MainContents = ({ history }) => {
   return (
-    <ContentsWrap>
-      <h2>메인 메뉴</h2>
-      <div id="contents-container">
-        <div id="icon">
-          <img id="camera" src={camera} alt="camera" />
-          <h2>사진 인식</h2>
+    <>
+      <ContentsWrap>
+        <h2>메인 메뉴</h2>
+        <div id="contents-container">
+          <div id="icon">
+            <img id="camera" src={camera} alt="camera" />
+            <h2>사진 인식</h2>
+          </div>
+          <div id="icon2" onClick={() => history.push('/closet')}>
+            <img id="closet" src={closet} alt="closet" />
+            <h2>옷장</h2>
+          </div>
         </div>
-        <div id="icon2">
-          <img id="closet" src={closet} alt="closet" />
-          <h2>옷장</h2>
+        <div id="contents-container">
+          <div id="icon3" onClick={() => history.push('/test')}>
+            <i id="mindTest" className="fas fa-clipboard-list"></i>
+            <h2>심리테스트</h2>
+          </div>
+          <div id="icon4" onClick={() => history.push('/recommend')}>
+            <i id="recommend" className="fas fa-tshirt"></i>
+            <h2>옷 추천</h2>
+          </div>
         </div>
-      </div>
-      <div id="contents-container">
-        <div id="icon3">
-          <i id="mindTest" className="fas fa-clipboard-list"></i>
-          <h2>심리테스트</h2>
+        <div id="contents-container">
+          <div id="icon5" onClick={() => history.push('/mypage')}>
+            <i id="myPage" className="fas fa-user"></i> <h2>마이페이지</h2>
+          </div>
+          <div id="icon6" onClick={() => history.push('/pretest')}>
+            <img id="pretest" src={pretest} alt="pretest" />
+            <h2>선호도테스트</h2>
+          </div>
         </div>
-        <div id="icon4">
-          <i id="recommend" className="fas fa-tshirt"></i>
-          <h2>옷 추천</h2>
-        </div>
-      </div>
-      <div id="contents-container">
-        <div id="icon5">
-          <i id="myPage" className="fas fa-user"></i> <h2>마이페이지</h2>
-        </div>
-        <div id="icon6">
-          <img id="pretest" src={pretest} alt="pretest" />
-          <h2>선호도테스트</h2>
-        </div>
-      </div>
-    </ContentsWrap>
+      </ContentsWrap>
+      <KakaoLogout />
+    </>
   );
 };
 
-export default MainContents;
+MainContents.propTypes = {
+  history: PropTypes.object,
+};
+
+export default withRouter(MainContents);

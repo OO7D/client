@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useHistory } from 'react';
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import camera from '../../assets/camera.svg';
 import closet from '../../assets/closet.svg';
 import brand from '../../assets/brand.svg';
+import KakaoLogin from '../../lib/KakaoLogin';
+
+// const { Kakao } = window;
+
+// function SocialLogin() {
+//   const history = useHistory();
+//   const kakaoLoginClickHandler = () => {
+//     Kakao.Auth.login({
+//       success: function (authObj) {
+//         fetch(`${KAKAO_LOGIN_API_URL}`, {
+//           method: 'POST',
+//           body: JSON.stringify({
+//             access_token: authObj.access_token,
+//           }),
+//         })
+//           .then(res => res.join())
+//           .then(res => {
+//             localStorage.setItem('Kakao_token', res.access_token);
+//             if (res.access_token) {
+//               alert('회원가입 페이지로 이동합니다.');
+//               history.push('/signup');
+//             }
+//           });
+//       },
+//       fail: function (err) {
+//         alert(JSON.stringify(err));
+//       },
+//     });
+//   };
+
+//   return (
+//     <article className="socialLogin">
+//       <Button fill className="btn kakao" onClick={kakaoLoginClickHandler} />
+//     </article>
+//   );
+// }
 
 const LandingContentsWrap = Styled.div`
   * {
@@ -100,7 +136,6 @@ const LandingContentsWrap = Styled.div`
     }
   }
   #login {
-    margin: 0 0 31px 0;
     h2 {
       text-align: center;
       font-size: 23px;
@@ -109,7 +144,7 @@ const LandingContentsWrap = Styled.div`
   }
   #login-button {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
   }
 `;
@@ -208,7 +243,8 @@ const LandingContents = () => {
           <div id="login">
             <h2>간편 로그인</h2>
             <div id="login-button">
-              <div className="g-signin2" data-onsuccess="onSignIn"></div>
+              {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
+              <KakaoLogin />
             </div>
           </div>
         </div>

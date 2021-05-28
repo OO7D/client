@@ -60,12 +60,14 @@ function Google() {
   };
 
   return (
-    <GoogleBtn id="gSignInWrapper">
-      <span className="label" />
-      <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignin">
-        <span className="icon"></span>
-        <span className="buttonText">Login With Google</span>
-      </div>
-    </GoogleBtn>
+    <div>
+      <GoogleBtn id="gSignInWrapper">
+        <span className="label" />
+        <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignin">
+          <span className="icon"></span>
+          <span className="buttonText">Login With Google</span>
+        </div>
+      </GoogleBtn>
+    </div>
   );
 }

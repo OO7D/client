@@ -1,11 +1,42 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-import SignupHeader from './SignupHeader';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import redcheck from '../../assets/red-check.svg';
+import transparent_check from '../../assets/transparent_check.svg';
 
 const SignupContentsWrap = Styled.div`
   * {
       color: #859594;
   }
+  img {
+    width: 15px;;
+    height: 15px;
+    margin-right: 5px;
+  }
+  #circle1, #circle2 {
+    margin: 22px 6px 0 22px;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border-radius: 50%;
+    border: 2px solid #CABFC5;
+    h2 {
+      font-weight: bold;
+      color: #859594;
+      font-size: 23px;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  #circle2 {
+      margin-left: 0px;
+  }
+
   #circle1 {
     background-color: #CABFC5;
   }
@@ -52,15 +83,19 @@ const SignupContentsWrap = Styled.div`
             height: 15px;
         }
         :checked + label {
-            background-color: #666666;
+          background-image: url(${transparent_check});
+          background-size: cover;
         }
       }
     }
     #description {
+      vertical-align: bottom;
+      h2 {
         color: #000000;
         text-align: center;
         font-size: 14px;
         margin-bottom: 18px;
+      }
     }
 `;
 
@@ -91,11 +126,32 @@ const Button = Styled.button`
   }
 `;
 
-const SignupContents = () => {
+const SignupContents = ({ history }) => {
+  const [checkedInputs, setCheckedInputs] = useState([]);
+
+  const changeHandler = (checked, id) => {
+    if (checked) {
+      setCheckedInputs([...checkedInputs, id]);
+      console.log('체크 반영 완료');
+    } else {
+      setCheckedInputs(checkedInputs.filter(el => el !== id));
+      console.log('체크 해제 반영 완료');
+    }
+  };
+
+  const isAllChecked = checkedInputs.length === 2;
+  const disabled = !isAllChecked;
   return (
     <>
       <SignupContentsWrap>
-        <SignupHeader />
+        <div id="circle-container">
+          <div id="circle1">
+            <h2>1</h2>
+          </div>
+          <div id="circle2">
+            <h2>2</h2>
+          </div>
+        </div>
         <div id="box-title">
           <h2>1. 약관 확인</h2>
         </div>
@@ -106,8 +162,15 @@ const SignupContents = () => {
           </div>
           <input type="text" readOnly={true} />
           <div id="box-subtitle2">
-            <input type="checkbox" id="check"></input>
-            <label id="check" htmlFor="check"></label>
+            <input
+              id="check"
+              type="checkbox"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check');
+              }}
+              checked={checkedInputs.includes('check') ? true : false}
+            ></input>
+            <label htmlFor="check"></label>
             <span>동의합니다</span>
           </div>
         </div>
@@ -118,17 +181,44 @@ const SignupContents = () => {
           </div>
           <input type="text" readOnly={true} />
           <div id="box-subtitle2">
-            <input type="checkbox" id="check"></input>
-            <label id="check" htmlFor="check"></label>
+            <input
+              type="checkbox"
+              id="check2"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check2');
+              }}
+              checked={checkedInputs.includes('check2') ? true : false}
+            ></input>
+            <label htmlFor="check2"></label>
             <span>동의합니다</span>
           </div>
         </div>
-        <div id="description">앗! 필수 동의 항목에 동의하지 않으셨어요!</div>
+        <div id="description">
+          <h2 style={disabled ? { display: 'block' } : { color: 'white' }}>
+            <img
+              style={
+                disabled ? { display: 'inline-block' } : { display: 'none' }
+              }
+              src={redcheck}
+              id="redcheck"
+              alt="redcheck"
+            />
+            앗! 필수 동의 항목에 동의하지 않으셨어요!
+          </h2>
+        </div>
         <ButtonWrap>
           <Button>
             <h2>취소</h2>
           </Button>
-          <Button style={{ backgroundColor: '#F79C43' }}>
+          <Button
+            disabled={disabled}
+            onClick={() => history.push('/signupcomplete')}
+            style={
+              disabled
+                ? { backgroundColor: '#859594' }
+                : { backgroundColor: '#F79C43' }
+            }
+          >
             <h2>확인</h2>
           </Button>
         </ButtonWrap>
@@ -137,4 +227,8 @@ const SignupContents = () => {
   );
 };
 
-export default SignupContents;
+SignupContents.propTypes = {
+  history: PropTypes.object,
+};
+
+export default withRouter(SignupContents);

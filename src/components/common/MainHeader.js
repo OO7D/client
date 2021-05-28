@@ -30,9 +30,12 @@ const MainHeaderWrap = Styled.div`
 
 const getTitle = path => {
   switch (path) {
-    case '/closet':
+    case '/signup':
+      return '회원가입';
     case '/closet/grid':
       return '옷장';
+    case '/signupcomplete':
+      return '회원가입';
     default:
       return '';
   }

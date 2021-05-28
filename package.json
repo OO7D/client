@@ -7,14 +7,15 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
-<<<<<<< HEAD
     "fontawesome": "^5.6.3",
+    "http-proxy-middleware": "^0.19.1",
+    "js-cookie": "^2.2.1",
     "node-sass": "^6.0.0",
-=======
     "prop-types": "^15.7.2",
->>>>>>> cbdc9c8d392685ea23ff76928dc1fad992bd8de4
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-google-login": "^5.2.2",
+    "react-kakao-login": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.0",
