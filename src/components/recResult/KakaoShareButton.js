@@ -13,7 +13,7 @@ const KakaoShareButton = () => {
       const kakao = window.Kakao;
       // 중복 초기화 방지
       if(!kakao.isInitialized()){ 
-        kakao.init('a85e5cd65888b2478de0e92c25640129');
+        kakao.init('43c826e6ac9da452ff55f5830f1d3ae7');
       }
       kakao.Link.createDefaultButton({
         // render에서 container에 해당하는 id를 찾아 그 부분에 렌더링
