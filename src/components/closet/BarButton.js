@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const BarButtonWrap = Styled.div`
   select {
