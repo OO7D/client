@@ -103,10 +103,10 @@ const upperState = [
 - RandomRecResult.js: 랜덤으로 상의와 하의를 추천해주는 페이지
 
 (ii)컴포넌트
-- recommendation (추천 메인뷰)
+- :seedling: recommendation (추천 메인뷰)
   - Button.js: /recommendation의 옷장에서 옷 고르기, 랜덤으로 추천받기 버튼 생성하는데 사용
 
-- recResult (추천 결과뷰)
+- :seedling: recResult (추천 결과뷰)
   - ClothBox.js: /recommendation/result_random에서 옷을 추천하기 위해 옷을 담는 박스로 사용. 옷, 옷의 이름, 옷의 색깔, 옷의 카테고리, 옷의 계절에 대한 정보가 나타남. 또한 웹크롤링을 한 경우 '쇼핑몰 바로가기'가 나타나며 하트를 누를 경우 데이터베이스에 정보가 반영됨.
   - ClothBoxSelected.js: /recommendation/result_selected에서 위의 ClothBox.js와 같은 역할을 함.
   - KakaoShareButton.js, Layout.js: 카카오 공유 버튼 생성 (문구 수정은 KakaoShareButton.js에서 가능)
@@ -116,7 +116,7 @@ const upperState = [
   - RatingBar.js: 옷 추천 결과 페이지에서 추천된 코디에 따라 1점부터 5점까지 점수를 매기는데 사용
   - Sns.js: 카카오, 페이스북, 트위터 공유 버튼을 화면에 표시하는데 사용
 
-- common (공통)
+- :seedling: common (공통)
   - LoadingMainHeader.js: 로딩 페이지에서 Header부분을 나타내는데 사용 
 
 ***
@@ -146,4 +146,5 @@ const upperState = [
   - 뒤로 가기가 가능하게 window.location을 사용하지 않고 로컬에 정보가 쌓이게 history.push로 변경함
 
 - 21-05-29
-  - 해야할 것: MakeButton.js에서 '다시 추천받기'버튼 클릭 시 랜덤으로 추천받는 경우와 옷장에서 고른 옷으로 추천받는 경우 다른 url로 이동하게 수정
+  - MakeButton.js에서 '다시 추천받기'버튼 클릭 시 랜덤으로 추천받는 경우와 옷장에서 고른 옷으로 추천받는 경우 다른 url로 이동하게 수정
+  - :exclamation: 추후 개선하면 좋을 점 :exclamation: 현재는 RandomRecResult/SelectedRecResult -> MakeModal -> Sns -> MakeButton으로 props를 계속 전달해줘야 함. MakeButton에서 url에 따라 다른 href로 이동할 수 있게 수정하면 좋을 것이라 생각됨 
