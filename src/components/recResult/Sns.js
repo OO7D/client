@@ -7,11 +7,10 @@ import MakeButton from './MakeButton'
 import './Sns.css';
 
 const Sns = props => {
-  const [mode, setMode] = useState(props.mode);
-  if (mode === 'changed')
+  const recMode = useState(props.recMode)[0];
     return (
       <>
-        <MakeButton></MakeButton>
+        <MakeButton recMode={recMode}></MakeButton>
         <div id='container'>
           <div id='_advertise'>만족하셨다면 이 서비스를 공유해 주세요!</div>
           <div id='snsContainer'>
@@ -26,10 +25,6 @@ const Sns = props => {
         </div>
       </>
     );
-  else if (mode === 'original')
-   return (
-    <></>
-   );
 };
 
 export default Sns;

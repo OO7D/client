@@ -47,8 +47,10 @@ const SelectedRecResultWrap = Styled.div`
 const SelectedRecResult = () => {
   // SY: mode를 original과 changed 두개로 나눠 original일 경우 rating 가능, changed일 경우 SNS 공유 가능
   const mode = 'original';
+  // SY: MakeModal -> Sns -> MakeButton에 랜덤으로 추천받는 경우와 옷장에서 고른 옷 기반으로 추천받는 경우를 나눠 전달
+  // SY: MakeModal -> Sns -> MakeButton의 다시 추천받기를 클릭하는 경우 recMethod 변수에 따라 다른 url로 이동하게 하기 위함 
+  const recMethod = 'selected';
   // SY: 서버를 통해 DB 정보를 가져올 수 없기에 일단은 upperState(상의), lowerState(하의), userState(사용자) 정보 생성
-  // SY: 웹크롤링 아닐 때는 빈 문자열 전달, 선택됐는지 여부 정보도 넘겨받아야 함
   const upperState = [
     {name: '쉬폰 블라우스'},
     {category: '셔츠'},
@@ -110,7 +112,7 @@ const SelectedRecResult = () => {
       {/* SY: 추천 결과 점수 매기는 바 */}
       <RatingBar mode={mode}></RatingBar>
       {/* SY: 점수 확인 버튼 */}
-      <MakeModal mode={mode}></MakeModal>
+      <MakeModal mode={mode} recMethod={recMethod}></MakeModal>
     </SelectedRecResultWrap>
   );
 };

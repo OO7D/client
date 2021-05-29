@@ -28,15 +28,18 @@ const MakeButtonWrap = Styled.div`
 `;
 
 const MakeButton = props => {
-  return (
-    <MakeButtonWrap>
-      <div id='buttonContainer'>
-        {/* SY: !서버! 함수 호출 */}
-        <a href='/recommendation/loading_random'><input type='button' className='btn' id='btn1' value='다시 추천받기'></input></a>
-        <a href='/recommendation/cloth_select'><input type='button' className='btn' id='btn2' value='다시 선택하기'></input></a>
-      </div>
-    </MakeButtonWrap>
-  );
+  const recMode = useState(props.recMode)[0];
+  let _href;
+  if (recMode === 'random') _href = '/recommendation/loading_random'; // SY: !서버! 여기에 onClick 함수 추가
+  else _href = '/recommendation/loading_selected'; // SY: !서버! 
+    return (
+      <MakeButtonWrap>
+        <div id='buttonContainer'>
+          <a href={_href}><input type='button' className='btn' id='btn1' value='다시 추천받기'></input></a>
+          <a href='/recommendation/cloth_select'><input type='button' className='btn' id='btn2' value='다시 선택하기'></input></a>
+        </div>
+      </MakeButtonWrap>
+    );
 };
 
 export default MakeButton;

@@ -43,6 +43,7 @@ const MakeModalWrap = Styled.div`
 
 const MakeModal = props => {
   const [isVisible, setVisible] = useState(props.visible);
+  const recMode = useState(props.recMode)[0];
   const openModal = () => {
     setVisible(true);
   }
@@ -69,7 +70,7 @@ const MakeModal = props => {
     const ratingBar = document.getElementById('ratingBar');
     ratingBar.innerHTML = '';
     return (
-      <Sns mode={mode}></Sns>
+      <Sns recMode={recMode}></Sns>
     );
   }
 };
