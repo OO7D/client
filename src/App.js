@@ -9,23 +9,19 @@ import SelectedRecResult from './pages/SelectedRecResult';
 import MainHeader from './components/common/MainHeader';
 import LoadingMainHeader from './components/common/LoadingMainHeader';
 import ClothSelect from './pages/ClothSelect';
+import PreferenceTest from './pages/PreferenceTest';
 
 function App() {
     return (
       <Router>
+        {/* SY: 헤더를 정하는 Switch */}
         <Switch>
-          <Route
-            exact
-            path="/recommendation/loading_selected"
-            component={LoadingMainHeader}
-          />
-          <Route
-            exact
-            path="/recommendation/loading_random"
-            component={LoadingMainHeader}
-          />
+          <Route exact path="/recommendation/loading_selected" component={LoadingMainHeader}/>
+          <Route exact path="/recommendation/loading_random" component={LoadingMainHeader}/>
           <Route path="/recommendation" component={MainHeader} />
+          <Route path="/" component={MainHeader} />
         </Switch>
+        {/* SY: 페이지 내용을 정하는 Switch */}
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/recommendation" component={Recommendation}/>
@@ -34,6 +30,7 @@ function App() {
           <Route exact path="/recommendation/cloth_select" component={ClothSelect}/>
           <Route exact path="/recommendation/loading_random" component={RandomLoading}/>
           <Route exact path="/recommendation/loading_selected" component={SelectedLoading}/>
+          <Route exact path="/preference_test" component={PreferenceTest}/>
         </Switch>
       </Router>
     );
