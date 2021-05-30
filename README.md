@@ -152,4 +152,7 @@ const upperState = [
 - 21-05-30
   - 선호도테스트에서 화면에 보여야 할 것들 배치
   - 이미지 src를 배열에 담아 '평가해 주세요' 버튼 클릭시 다음 이미지가 보이게 함
-  -  :exclamation: ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 발생.
+  -  :exclamation: ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 발생 -> 해결(21-05-31)
+
+- 21-05-31
+  - ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 해결: useState를 사용하여 value 값을 get하고 setValue를 통해 value 값을 set 함으로써 문제 해결
