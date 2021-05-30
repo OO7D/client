@@ -4,6 +4,8 @@ import './RatingBar.css';
 
 const RatingBar = props => {
   const mode = useState(props.mode)[0];
+  // SY: input type range에서 초기값 설정 시 ratingBar의 바가 움직이지 않는 문제 발생
+  // SY: useState를 사용하여 값을 set, get함으로써 해당 문제 해결됨
   let [_value, setValue] = useState(3);
   return (
     <>
