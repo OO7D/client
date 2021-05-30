@@ -34,10 +34,6 @@ const PreferenceTest = () => {
   for (i=0; i<10; i++){
     womanImgs[i] = images['woman_cloth' + (i+1) + '.png'];
   }
-
-  // SY: ratingBar 초기값 5점 만점에 5점으로 지정
-
-  console.log(selectedCloth);
   return (
     <PreferenceTestWrap>
       <div id='preferenceTestContainer'>
