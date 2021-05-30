@@ -12,7 +12,6 @@ input[type='range']{
 }
 /* SY: 커서 모양과 색 설정, 커서 움직이는 만큼 색 채우게 설정 */
 input[type='range']::-webkit-slider-thumb{
-  overflow-x: visible;
   width: 25px;
   -webkit-appearance: none;
   height: 25px;
