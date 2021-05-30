@@ -148,3 +148,8 @@ const upperState = [
 - 21-05-29
   - MakeButton.js에서 '다시 추천받기'버튼 클릭 시 랜덤으로 추천받는 경우와 옷장에서 고른 옷으로 추천받는 경우 다른 url로 이동하게 수정
   - :exclamation: 추후 개선하면 좋을 점 :exclamation: 현재는 RandomRecResult/SelectedRecResult -> MakeModal -> Sns -> MakeButton으로 props를 계속 전달해줘야 함. MakeButton에서 url에 따라 다른 href로 이동할 수 있게 수정하면 좋을 것이라 생각됨 
+
+- 21-05-30
+  - 선호도테스트에서 화면에 보여야 할 것들 배치
+  - 이미지 src를 배열에 담아 '평가해 주세요' 버튼 클릭시 다음 이미지가 보이게 함
+  -  :exclamation: ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 발생.
