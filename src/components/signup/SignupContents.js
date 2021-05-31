@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
+import { useForm } from 'react-hook-form';
 import Styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -48,10 +53,14 @@ const SignupContentsWrap = Styled.div`
     }
   }
   #box-container {
-      margin-bottom: 54px;
+      margin-bottom: 35px;
   }
   #box-container2 {
-      margin-bottom: 27px;
+      margin-bottom: 5px;
+  }
+  #box-container3 {
+    display: flex;
+    justify-content: center;
   }
   #box-subtitle1 {
       margin: 24px 0 9px 0;
@@ -97,36 +106,48 @@ const SignupContentsWrap = Styled.div`
         margin-bottom: 18px;
       }
     }
-`;
-
-const ButtonWrap = Styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-
-const Button = Styled.button`
-  display: flex;
-  width: 156px;
-  height: 54px;
-  background-color: #859594;
-  outline: none;
-  border: none;
-  box-shadow: 0px 0px 3px 0px #859594;
-  h2 {
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 23px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    .makeStyles-selectEmpty-2 {
+      font-size: 15px;
+    }
+    #button-container {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-around;
+      #button, #submitbtn {
+      display: flex;
+      width: 156px;
+      height: 54px;
+      background-color: #859594;
+      outline: none;
+      border: none;
+      box-shadow: 0px 0px 3px 0px #859594;
+      h2 {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 23px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+      }
+    }
   }
 `;
 
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
 const SignupContents = ({ history }) => {
+  const classes = useStyles();
   const [checkedInputs, setCheckedInputs] = useState([]);
 
   const changeHandler = (checked, id) => {
@@ -139,8 +160,33 @@ const SignupContents = ({ history }) => {
     }
   };
 
-  const isAllChecked = checkedInputs.length === 2;
+  const [searchSex, setSearchSex] = useState('');
+  const [searchAge, setSearchAge] = useState('');
+
+  const handleChange = (e, type) => {
+    const value = e.target.value;
+    if (type === 'sex') {
+      setSearchSex(value);
+      console.log('성별 반영 완료');
+    } else {
+      setSearchAge(value);
+      console.log('연령대 반영 완료');
+    }
+  };
+  const isCheckedRight = checkedInputs.length === 2;
+  const isSelectRight = (searchSex !== '') & (searchAge !== '');
+  const isAllChecked = isCheckedRight & isSelectRight;
   const disabled = !isAllChecked;
+
+  const clickGoBackHome = () => {
+    history.push('/');
+  };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
+    console.log(data);
+  };
+
   return (
     <>
       <SignupContentsWrap>
@@ -153,7 +199,7 @@ const SignupContents = ({ history }) => {
           </div>
         </div>
         <div id="box-title">
-          <h2>1. 약관 확인</h2>
+          <h2>1. 약관 확인 및 필수 정보 작성</h2>
         </div>
         <div id="box-container">
           <div id="box-subtitle1">
@@ -193,6 +239,32 @@ const SignupContents = ({ history }) => {
             <span>동의합니다</span>
           </div>
         </div>
+        <div id="box-container3">
+          <FormControl className={classes.formControl}>
+            <NativeSelect
+              className={classes.selectEmpty}
+              value={searchSex}
+              onChange={e => handleChange(e, 'sex')}
+            >
+              <option value="">성별</option>
+              <option value={1}>남성</option>
+              <option value={2}>여성</option>
+            </NativeSelect>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <NativeSelect
+              className={classes.selectEmpty}
+              value={searchAge}
+              onChange={e => handleChange(e, 'age')}
+            >
+              <option value="">연령대</option>
+              <option value={10}>10대</option>
+              <option value={20}>20대</option>
+              <option value={30}>30대</option>
+              <option value={40}>40대이상</option>
+            </NativeSelect>
+          </FormControl>
+        </div>
         <div id="description">
           <h2 style={disabled ? { display: 'block' } : { color: 'white' }}>
             <img
@@ -203,25 +275,31 @@ const SignupContents = ({ history }) => {
               id="redcheck"
               alt="redcheck"
             />
-            앗! 필수 동의 항목에 동의하지 않으셨어요!
+            앗! 필수 정보 동의와 성별, 연령대 작성이 안되었어요!
           </h2>
         </div>
-        <ButtonWrap>
-          <Button>
+        <div id="button-container">
+          <div id="button" onClick={clickGoBackHome}>
             <h2>취소</h2>
-          </Button>
-          <Button
-            disabled={disabled}
-            onClick={() => history.push('/signupcomplete')}
-            style={
-              disabled
-                ? { backgroundColor: '#859594' }
-                : { backgroundColor: '#F79C43' }
-            }
-          >
-            <h2>확인</h2>
-          </Button>
-        </ButtonWrap>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="submit"
+              id="submitbtn"
+              value="확인"
+              disabled={disabled}
+              onClick={() => history.push('/signupcomplete')}
+              style={{
+                backgroundColor: disabled ? '#859594' : '#F79C43',
+                fontSize: '23px',
+                fontWeight: 'bold',
+                display: 'flex',
+                justifyContent: 'center',
+                color: 'white',
+              }}
+            />
+          </form>
+        </div>
       </SignupContentsWrap>
     </>
   );
