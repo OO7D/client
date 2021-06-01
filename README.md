@@ -101,6 +101,7 @@ const upperState = [
 - SelectedRecResult.js: 옷장에서 선택한 상의 혹은 하의에 맞게 하의 혹은 상의를 추천해주는 페이지
 - RandomLoading.js: 옷 추천 메인 페이지에서 '랜덤으로 추천받기' 클릭 시 이동하는 페이지
 - RandomRecResult.js: 랜덤으로 상의와 하의를 추천해주는 페이지
+- PreferenceTest.js: 선호도테스트 
 
 (ii)컴포넌트
 - :seedling: recommendation (추천 메인뷰)
@@ -155,13 +156,13 @@ const upperState = [
   -  :exclamation: ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 발생 -> 해결(21-05-31)
 
 - 21-05-31
-  - ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 해결: useState를 사용하여 value 값을 get하고 setValue를 통해 value 값을 set 함으로써 문제 해결
+  - :dancers: ratingBar의 초기값 설정 시 바가 움직이지 않는 문제 해결 :dancers: : useState를 사용하여 value 값을 get하고 setValue를 통해 value 값을 set 함으로써 문제 해결
   - 선호도테스트에서 화면에 나타나는 요소들 대략적인 형태 잡음
   - 왼쪽, 오른쪽 화살표 클릭 시 이미지가 변경되게 함
   - :exclamation: ratingBar의 값을 각각의 이미지와 어떻게 연결할 것인지 생각해보기
 
 - 21-06-01
-  - :exclamation: 선호도테스트에서 10개의 옷에 대한 rating 정보를 저장하면서 인덱스를 사용한 배열 정보가 수정되지 않는 문제 발생(하단의 코드 참조)
+  - :exclamation: 선호도테스트에서 10개의 옷에 대한 rating 정보를 저장하면서 인덱스를 사용한 배열 정보가 수정되지 않는 문제 발생(하단의 코드 참조) -> 해결(21-06-01)
 ```javascript
 let ratings = [null, null, null, null, null, null, null, null, null, null];
 function setRating(){
@@ -169,3 +170,4 @@ function setRating(){
 }
 ```
 위의 코드는 ratings 배열의 수정으로 이어지지 않음.
+  - :dancers: 선호도테스트에서 ratingBar 관련 모든 문제 해결 :dancers: : 이미지를 넘길 때마다 초기값인 3으로 지정되지 않는 문제, bar가 움직이지 않는 문제, 이미 rating한 이미지임에도 설정한 점수대로 보이지 않는 문제 모두 해결
