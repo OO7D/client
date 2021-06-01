@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import KakaoLoginImg from '../assets/kakao.png';
+import axios from 'axios';
 
 const ButtonWrap = Styled.div`
   background-image: url(${KakaoLoginImg});
@@ -25,16 +26,31 @@ class KakaoLogin extends Component {
           reject('Kakao 인스턴스가 존재하지 않습니다.');
         }
         Kakao.Auth.login({
-          success: res => {
-            // console.log('정상적으로 로그인 되었습니다.', auth);)
-            localStorage.setItem('token', res.token);
-            this.setState({
-              isLogin: true,
-            });
-            this.props.history.push('/signup');
+          success: function (authObj) {
+            fetch(`${Kakao.Auth.getAccessToken}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              method: 'POST',
+              body: JSON.stringify({
+                access_token: authObj.access_token,
+              }),
+            })
+              .then(res => res.json())
+              .then(res => {
+                console.log(res.access_token);
+                // console.log('정상적으로 로그인 되었습니다.', auth);)
+                localStorage.setItem('token', res.access_token);
+                this.setState({
+                  isLogin: true,
+                });
+                alert('로그인 되었습니다.');
+                this.props.history.push('/signup');
+              });
           },
           fail: err => {
-            console.error(err);
+            console.log(JSON.stringify(err));
           },
         });
       });
@@ -49,6 +65,7 @@ class KakaoLogin extends Component {
       });
     }
   }
+
   render() {
     const { isLogin } = this.state;
     const loginView = <ButtonWrap onClick={this.loginWithKakao}></ButtonWrap>;
