@@ -136,10 +136,7 @@ const PreferenceTest = () => {
 // SY: 화면에 나타난 옷의 순서에서 +1을 하는 함수
   function plusNumber() {
     if (selectedCloth < 9) {
-      setSelectedCloth(selectedCloth+1); 
-    }
-    else if (selectedCloth === 9){
-      alert('Hi'); //여기에 모달
+      setSelectedCloth(selectedCloth+1);
     }
   }
 
@@ -150,21 +147,39 @@ const PreferenceTest = () => {
     }
   }
 
+  // SY: 평가해주세요 버튼을 누르면 실행됨
   function update() {
     // shallow copy
     const newArray = [..._value];
-    // const newIsFirst = [...isFirst];
     // mutate copy
     newArray[selectedCloth] = Number(temp);
     // set state
     setValue(newArray);
-    console.log(newArray);
+    // SY: setTemp를 3으로 초기화해줌으로써 다음 이미지로 넘어갔을 때 3점으로 초기화된 ratingBar에서 아무것도 누르지 않고 버튼을 눌러도 3점이 배열에 담김
+    setTemp(3);
+
+    if (selectedCloth === 9){
+      // 모달
+      // !서버!에 정보 보내기
+      console.log(_value);
+      alert('Hi');
+    }
   }
 
-  // SY: ratingBar
-  let [_value, setValue] = useState([null, null, null, null, null, null, null, null, null, null]);
+  // SY: ratingBar에서 움직일 때마다 실행됨
+  function changeValue(value) {
+    const newArray = [..._value];
+    // const newIsFirst = [...isFirst];
+    // mutate copy
+    newArray[selectedCloth] = Number(value);
+    // set state
+    setValue(newArray);
+  }
+
+  // SY: 기본 점수를 3으로 설정함으로써 ratingBar의 default 값이 3이 됨
+  let [_value, setValue] = useState([3, 3, 3, 3, 3, 3, 3, 3, 3, 3]);
+  // SY: 배열에 점수를 넣기 위한 변수 temp
   let [temp, setTemp] = useState(3);
-  console.log(temp);
 
   return (
     <PreferenceTestWrap>
@@ -186,13 +201,15 @@ const PreferenceTest = () => {
         <div id='ratingBar'>
           <div className='ratingBar'>
             <span className='score' id='leftScore'>1점</span>
-            <input type="range" min="1" max="5" value={temp} id="range" onChange={e => {
+            <input type="range" min="1" max="5" value={_value[selectedCloth]} id="range" onChange={e => {
+              // SY: 왜인지 모르겠으나 changeValue 함수를 추가함으로써 ratingBar 에러 해결 (이 함수 없으면 이미지 넘어갈 때마다 3점으로 초기화 + 전 이미지들로 돌아갔을 때 ratingBar 제대로 안 움직이는 문제 발생)
+              changeValue(e.target.value);
               setTemp(e.target.value);
-              document.getElementById('rating').innerHTML = e.target.value + '점';}}></input>
+              }}></input>
             <div className='score' id='rightScore'>5점</div>
           </div>
           <div className='ratingBar'>
-            <div id='rating'>3점</div>
+            <div id='rating'>{_value[selectedCloth]}점</div>
           </div> 
         </div>
         <input type='button' id='btn' value='평가해 주세요' 
