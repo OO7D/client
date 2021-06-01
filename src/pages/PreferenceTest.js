@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import toLeft from 'assets/preferenceTest/toLeft.svg';
 import toRight from 'assets/preferenceTest/toRight.svg';
+import Modal from 'react-awesome-modal';
+import { useHistory } from 'react-router';
 import Styled from 'styled-components';
 
 const PreferenceTestWrap = Styled.div`
@@ -110,13 +112,51 @@ const PreferenceTestWrap = Styled.div`
     font-size: 20px;
     font-weight: bold;
   }
+  #modalContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #completeState{
+    margin-top: 70px;
+    margin-bottom: -30px;
+  }
+  .completeState{
+    width: 170px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+  }
+  #okBtn{
+    margin-top: 10px;
+  }
+  .btn{
+    width: 130px;
+    height: 50px;
+    background-color: #CABFC5;
+    font-size: 14px;
+    color: white;
+    border-radius: 7px;
+    border: 1px solid #CABFC5;
+    font-weight: bold;
+  }
+  .btn:focus {
+    border: none;
+    outline: none;
+  }
 `;
 
-const PreferenceTest = () => {
+const PreferenceTest = props => {
   // SY: !서버! 혹은 !DB!에서 데이터 받아와서 남자인지 여자인지 파악하고 그에 따라 함수 실행
-
+  let userState = [
+    {gender: 'female'}
+  ];
   // SY: 화면에 나타나는 이미지가 몇 번째 이미지인지 파악할 수 있도록 하는 변수 선언
   let [selectedCloth, setSelectedCloth] = useState(0);
+  const manImgs = [];
+  const womanImgs = [];
 
   // SY: preferenceTest/woman_cloth 이미지 가져오기
   function importAll(r) {
@@ -124,14 +164,24 @@ const PreferenceTest = () => {
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
     return images;
   }
+  if (userState[0].gender === 'male'){
+    const images = importAll(require.context('assets/preferenceTest/man_cloth', false, /\.png/));
+    let i;
+    for (i=0; i<10; i++){
+      manImgs[i] = images['man_cloth' + (i+1) + '.png'];
+    }
+  }
+  else{
+    const images = importAll(require.context('assets/preferenceTest/woman_cloth', false, /\.png/));
+    let i;
+    for (i=0; i<10; i++){
+      womanImgs[i] = images['woman_cloth' + (i+1) + '.png'];
+    }
+  }
   const images = importAll(require.context('assets/preferenceTest/woman_cloth', false, /\.png/));
 
   // SY: 회원이 여성일 경우 화면에 보여줄 옷의 src를 배열에 담기
-  const womanImgs = [];
-  let i;
-  for (i=0; i<10; i++){
-    womanImgs[i] = images['woman_cloth' + (i+1) + '.png'];
-  }
+  
 
 // SY: 화면에 나타난 옷의 순서에서 +1을 하는 함수
   function plusNumber() {
@@ -145,6 +195,20 @@ const PreferenceTest = () => {
     if (selectedCloth > 0) {
       setSelectedCloth(selectedCloth-1); 
     }
+  }
+
+  // SY: 모달 열고 닫는 함수
+  const [isVisible, setVisible] = useState(props.visible);
+  const openModal = () => {
+    setVisible(true);
+  }
+  const closeModal = () => {
+    setVisible(false);
+  }
+  const history = useHistory();
+  function goToMain() {
+    history.push('/');
+    return <></>;
   }
 
   // SY: 평가해주세요 버튼을 누르면 실행됨
@@ -162,7 +226,7 @@ const PreferenceTest = () => {
       // 모달
       // !서버!에 정보 보내기
       console.log(_value);
-      alert('Hi');
+      openModal();
     }
   }
 
@@ -191,7 +255,7 @@ const PreferenceTest = () => {
           <div id='outerBox'>
             {/* SY: 옷을 감싸는 박스 */}
             <div id='innerBox'>
-              <img id='cloth' src={womanImgs[selectedCloth].default}></img>
+              <img id='cloth' src={userState[0].gender === 'male' ? manImgs[selectedCloth].default : womanImgs[selectedCloth].default}></img>
             </div>
           </div>
           <img src={toRight} onClick={plusNumber}></img>
@@ -216,6 +280,13 @@ const PreferenceTest = () => {
         // SY: 마지막 이미지 전까지 '평가해 주세요' 버튼 클릭 시 다음 이미지로 넘어감
         onClick={() => {update(); plusNumber();}}></input>
         {/* 버튼 눌렀을 때 10번째 모달창 혹은 아직 평가가 완료되지 않았습니다. 나오게 하기.(널 값 있으면 안 돼) */}
+        <Modal visible={isVisible} width="300" height="244" effect="fadeInUp" onClick={closeModal}>
+          <div id='modalContainer'>
+            <div id='completeState' className='completeState'>선호도 테스트가</div>
+            <div className='completeState'>완료되었습니다.</div>
+            <input type='button' className='btn' id='okBtn' value='확인' onClick={() => {closeModal(); goToMain();}} ></input>
+          </div>
+        </Modal>
       </div>
     </PreferenceTestWrap>
   );
