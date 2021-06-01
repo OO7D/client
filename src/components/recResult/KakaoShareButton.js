@@ -13,7 +13,7 @@ const KakaoShareButton = () => {
       const kakao = window.Kakao;
       // 중복 초기화 방지
       if(!kakao.isInitialized()){ 
-        kakao.init(''); // 키 값
+        kakao.init(''); //키 값
       }
       kakao.Link.createDefaultButton({
         // render에서 container에 해당하는 id를 찾아 그 부분에 렌더링
