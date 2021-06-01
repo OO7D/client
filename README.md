@@ -159,3 +159,13 @@ const upperState = [
   - 선호도테스트에서 화면에 나타나는 요소들 대략적인 형태 잡음
   - 왼쪽, 오른쪽 화살표 클릭 시 이미지가 변경되게 함
   - :exclamation: ratingBar의 값을 각각의 이미지와 어떻게 연결할 것인지 생각해보기
+
+- 21-06-01
+  - :exclamation: 선호도테스트에서 10개의 옷에 대한 rating 정보를 저장하면서 인덱스를 사용한 배열 정보가 수정되지 않는 문제 발생(하단의 코드 참조)
+```javascript
+let ratings = [null, null, null, null, null, null, null, null, null, null];
+function setRating(){
+  ratings[selectedCloth] = Number(_value);
+}
+```
+위의 코드는 ratings 배열의 수정으로 이어지지 않음.
