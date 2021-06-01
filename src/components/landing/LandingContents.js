@@ -6,41 +6,6 @@ import closet from '../../assets/closet.svg';
 import brand from '../../assets/brand.svg';
 import KakaoLogin from '../../lib/KakaoLogin';
 
-// const { Kakao } = window;
-
-// function SocialLogin() {
-//   const history = useHistory();
-//   const kakaoLoginClickHandler = () => {
-//     Kakao.Auth.login({
-//       success: function (authObj) {
-//         fetch(`${KAKAO_LOGIN_API_URL}`, {
-//           method: 'POST',
-//           body: JSON.stringify({
-//             access_token: authObj.access_token,
-//           }),
-//         })
-//           .then(res => res.join())
-//           .then(res => {
-//             localStorage.setItem('Kakao_token', res.access_token);
-//             if (res.access_token) {
-//               alert('회원가입 페이지로 이동합니다.');
-//               history.push('/signup');
-//             }
-//           });
-//       },
-//       fail: function (err) {
-//         alert(JSON.stringify(err));
-//       },
-//     });
-//   };
-
-//   return (
-//     <article className="socialLogin">
-//       <Button fill className="btn kakao" onClick={kakaoLoginClickHandler} />
-//     </article>
-//   );
-// }
-
 const LandingContentsWrap = Styled.div`
   * {
       color: #859594;
@@ -165,14 +130,6 @@ const Button = Styled.button`
     font-size: 20px;
   }
 `;
-
-const onSignin = googleUser => {
-  const profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-};
 
 const LandingContents = () => {
   return (
