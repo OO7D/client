@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import Styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -146,7 +146,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignupContents = ({ history }) => {
+const SignupContents = ({ history, props }) => {
   const classes = useStyles();
   const [checkedInputs, setCheckedInputs] = useState([]);
 
@@ -173,19 +173,12 @@ const SignupContents = ({ history }) => {
       console.log('연령대 반영 완료');
     }
   };
-  const isCheckedRight = checkedInputs.length === 2;
-  const isSelectRight = (searchSex !== '') & (searchAge !== '');
-  const isAllChecked = isCheckedRight & isSelectRight;
-  const disabled = !isAllChecked;
 
-  const clickGoBackHome = () => {
-    history.push('/');
-  };
-
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
-    console.log(data);
-  };
+  const disabled = !(
+    (checkedInputs.length === 2) &
+    (searchSex !== '') &
+    (searchAge !== '')
+  );
 
   return (
     <>
@@ -247,8 +240,8 @@ const SignupContents = ({ history }) => {
               onChange={e => handleChange(e, 'sex')}
             >
               <option value="">성별</option>
-              <option value={1}>남성</option>
-              <option value={2}>여성</option>
+              <option value={'남성'}>남성</option>
+              <option value={'여성'}>여성</option>
             </NativeSelect>
           </FormControl>
           <FormControl className={classes.formControl}>
@@ -258,10 +251,10 @@ const SignupContents = ({ history }) => {
               onChange={e => handleChange(e, 'age')}
             >
               <option value="">연령대</option>
-              <option value={10}>10대</option>
-              <option value={20}>20대</option>
-              <option value={30}>30대</option>
-              <option value={40}>40대이상</option>
+              <option value={'10대'}>10대</option>
+              <option value={'20대'}>20대</option>
+              <option value={'30대'}>30대</option>
+              <option value={'40대이상'}>40대이상</option>
             </NativeSelect>
           </FormControl>
         </div>
@@ -279,26 +272,27 @@ const SignupContents = ({ history }) => {
           </h2>
         </div>
         <div id="button-container">
-          <div id="button" onClick={clickGoBackHome}>
+          <div id="button" onClick={() => history.push('/')}>
             <h2>취소</h2>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="submit"
-              id="submitbtn"
-              value="확인"
-              disabled={disabled}
-              onClick={() => history.push('/signupcomplete')}
-              style={{
-                backgroundColor: disabled ? '#859594' : '#F79C43',
-                fontSize: '23px',
-                fontWeight: 'bold',
-                display: 'flex',
-                justifyContent: 'center',
-                color: 'white',
-              }}
-            />
-          </form>
+          <input
+            type="submit"
+            id="submitbtn"
+            value="확인"
+            disabled={disabled}
+            onClick={
+              (() => props.setIsSignedUp(true),
+              () => history.push('/signupcomplete'))
+            }
+            style={{
+              backgroundColor: disabled ? '#859594' : '#F79C43',
+              fontSize: '23px',
+              fontWeight: 'bold',
+              display: 'flex',
+              justifyContent: 'center',
+              color: 'white',
+            }}
+          />
         </div>
       </SignupContentsWrap>
     </>
