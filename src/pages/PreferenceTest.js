@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import RatingBar from 'components/recResult/RatingBar';
 import toLeft from 'assets/preferenceTest/toLeft.svg';
 import toRight from 'assets/preferenceTest/toRight.svg';
 import Styled from 'styled-components';
@@ -50,6 +49,67 @@ const PreferenceTestWrap = Styled.div`
   #clothOrder{
     margin-bottom: 35px;
   }
+  #btn{
+    width: 130px;
+    height: 50px;
+    background-color: #CABFC5;
+    font-size: 14px;
+    color: white;
+    border-radius: 7px;
+    border: 1px solid #CABFC5;
+    font-weight: bold;
+    margin-top: 22px;
+  }
+  #btn: focus {
+    outline: none;
+    border: none;
+  }
+  input[type='range']{
+    overflow: hidden;
+    width: 250px;
+    height: 14px;
+    -webkit-appearance: none;
+    background-color: #C4C4C4;
+    outline: none;
+    /* border-radius: 10px; */
+    margin-left: 8px;
+  }
+  input[type='range']::-webkit-slider-thumb{
+    width: 25px;
+    -webkit-appearance: none;
+    height: 25px;
+    cursor: pointer;
+    background: #F79C43;
+    box-shadow: -250px 0 0 250px #F79C43;
+  }
+  .ratingBar {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  .score{
+    font-size: 14px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  #leftScore{
+    margin-left: 15px;
+    font-weight: bold;
+  }
+  #rightScore{
+    margin-left: 7px;
+    font-weight: bold;
+  }
+  #rating {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;
 
 const PreferenceTest = () => {
@@ -77,7 +137,9 @@ const PreferenceTest = () => {
   function plusNumber() {
     if (selectedCloth < 9) {
       setSelectedCloth(selectedCloth+1); 
-      console.log(selectedCloth+1);
+    }
+    else if (selectedCloth === 9){
+      alert('Hi'); //여기에 모달
     }
   }
 
@@ -85,9 +147,24 @@ const PreferenceTest = () => {
   function minusNumber(){
     if (selectedCloth > 0) {
       setSelectedCloth(selectedCloth-1); 
-      console.log(selectedCloth-1);
     }
   }
+
+  function update() {
+    // shallow copy
+    const newArray = [..._value];
+    // const newIsFirst = [...isFirst];
+    // mutate copy
+    newArray[selectedCloth] = Number(temp);
+    // set state
+    setValue(newArray);
+    console.log(newArray);
+  }
+
+  // SY: ratingBar
+  let [_value, setValue] = useState([null, null, null, null, null, null, null, null, null, null]);
+  let [temp, setTemp] = useState(3);
+  console.log(temp);
 
   return (
     <PreferenceTestWrap>
@@ -105,11 +182,23 @@ const PreferenceTest = () => {
           <img src={toRight} onClick={plusNumber}></img>
         </div>
         <div id='clothOrder'>{selectedCloth+1}/10</div>
-        <RatingBar></RatingBar>
-        {/* ratingBar를 여기로 가져오자. 그리고 value에다가 _value라고 해서 값을 계속해서 주자. */}
-        <input type='button' value='평가해 주세요' 
+        {/* SY: ratingBar */}
+        <div id='ratingBar'>
+          <div className='ratingBar'>
+            <span className='score' id='leftScore'>1점</span>
+            <input type="range" min="1" max="5" value={temp} id="range" onChange={e => {
+              setTemp(e.target.value);
+              document.getElementById('rating').innerHTML = e.target.value + '점';}}></input>
+            <div className='score' id='rightScore'>5점</div>
+          </div>
+          <div className='ratingBar'>
+            <div id='rating'>3점</div>
+          </div> 
+        </div>
+        <input type='button' id='btn' value='평가해 주세요' 
         // SY: 마지막 이미지 전까지 '평가해 주세요' 버튼 클릭 시 다음 이미지로 넘어감
-        onClick={plusNumber}></input>
+        onClick={() => {update(); plusNumber();}}></input>
+        {/* 버튼 눌렀을 때 10번째 모달창 혹은 아직 평가가 완료되지 않았습니다. 나오게 하기.(널 값 있으면 안 돼) */}
       </div>
     </PreferenceTestWrap>
   );
