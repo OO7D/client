@@ -167,13 +167,14 @@ const upperState = [
 
 - 21-06-01
   - :exclamation: 선호도테스트에서 10개의 옷에 대한 rating 정보를 저장하면서 인덱스를 사용한 배열 정보가 수정되지 않는 문제 발생(하단의 코드 참조) -> 해결(21-06-01)
-```javascript
-let ratings = [null, null, null, null, null, null, null, null, null, null];
-function setRating(){
+  ```javascript
+  let ratings = [null, null, null, null, null, null, null, null, null, null];
+  function setRating(){
   ratings[selectedCloth] = Number(_value);
-}
-```
-위의 코드는 ratings 배열의 수정으로 이어지지 않음.
+  }
+  ```
+
+  - 위의 코드는 ratings 배열의 수정으로 이어지지 않음.
   - :dancers: 선호도테스트에서 ratingBar 관련 모든 문제 해결 :dancers: : 이미지를 넘길 때마다 초기값인 3으로 지정되지 않는 문제, bar가 움직이지 않는 문제, 이미 rating한 이미지임에도 설정한 점수대로 보이지 않는 문제 모두 해결
   - 10번째 코디 평가 완료할 시 모달 생성 및 확인 버튼 누르면 메인 페이지로 이동하게 함
   - 성별 정보를 받아 성별에 따라 다른 옷이 나타날 수 있게 환경 설정
