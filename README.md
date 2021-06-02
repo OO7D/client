@@ -19,6 +19,10 @@
 
 ![랜덤으로 추천받기](https://user-images.githubusercontent.com/38969686/119990226-0c603a80-c003-11eb-9bea-05af875e02da.jpg)
 
+(iii) 선호도 테스트
+
+<img width="960" alt="선호도 테스트" src="https://user-images.githubusercontent.com/38969686/120449191-2e263c80-c3ca-11eb-9c59-c5e99b2c15fb.png">
+
 ***
 
 #### 2. 함수 호출 시 받아야 하는 정보
@@ -173,3 +177,6 @@ function setRating(){
   - :dancers: 선호도테스트에서 ratingBar 관련 모든 문제 해결 :dancers: : 이미지를 넘길 때마다 초기값인 3으로 지정되지 않는 문제, bar가 움직이지 않는 문제, 이미 rating한 이미지임에도 설정한 점수대로 보이지 않는 문제 모두 해결
   - 10번째 코디 평가 완료할 시 모달 생성 및 확인 버튼 누르면 메인 페이지로 이동하게 함
   - 성별 정보를 받아 성별에 따라 다른 옷이 나타날 수 있게 환경 설정
+
+- 21-06-02
+  - 선호도 테스트 흐름도 작성 
