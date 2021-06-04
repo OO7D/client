@@ -12,6 +12,10 @@ import ClothSelect from './pages/ClothSelect';
 import PreferenceTest from './pages/PreferenceTest';
 import MindTest from './pages/MindTest';
 import MindTestResult from './pages/MindTestResult';
+import ClosetMain from './pages/ClosetMain';
+import ClosetGrid from './pages/ClosetGrid';
+import ClosetNew from './pages/ClosetNew';
+import ClosetComplete from './pages/ClosetComplete';
 
 function App() {
     return (
@@ -26,6 +30,7 @@ function App() {
         {/* SY: 페이지 내용을 정하는 Switch */}
         <Switch>
           <Route exact path="/" component={Main} />
+          {/* 수연 */}
           <Route exact path="/recommendation" component={Recommendation}/>
           <Route exact path="/recommendation/result_random" component={RandomRecResult}/>
           <Route exact path="/recommendation/result_selected" component={SelectedRecResult}/>
@@ -35,6 +40,13 @@ function App() {
           <Route exact path="/preference_test" component={PreferenceTest}/>
           <Route exact path="/mind_test" component={MindTest}/>
           <Route exact path="/mind_test/result" component={MindTestResult}/>
+          {/* 소희님 */}
+          <Route exact path="/closet" component={ClosetMain} />
+          <Route exact path="/closet/grid" component={ClosetGrid} />
+          <Route exact path="/closet/new" component={ClosetNew} />
+          <Route exact path="/closet/complete" component={ClosetComplete} />
+          <Route exact path="/recommend" component={ClosetMain} />
+          <Route exact path="/recommend/grid" component={ClosetGrid} />
         </Switch>
       </Router>
     );
