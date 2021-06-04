@@ -40,6 +40,11 @@ const getTitle = path => {
     case '/recommendation':
     case '/recommendation/':
       return '옷 추천'
+    case '/mind_test':
+    case '/mind_test/':
+    case '/mind_test/result':
+    case '/mind_test/result/':
+      return '심리 테스트'
     default:
       return '';
   }

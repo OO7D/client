@@ -10,6 +10,8 @@ import MainHeader from './components/common/MainHeader';
 import LoadingMainHeader from './components/common/LoadingMainHeader';
 import ClothSelect from './pages/ClothSelect';
 import PreferenceTest from './pages/PreferenceTest';
+import MindTest from './pages/MindTest';
+import MindTestResult from './pages/MindTestResult';
 
 function App() {
     return (
@@ -31,6 +33,8 @@ function App() {
           <Route exact path="/recommendation/loading_random" component={RandomLoading}/>
           <Route exact path="/recommendation/loading_selected" component={SelectedLoading}/>
           <Route exact path="/preference_test" component={PreferenceTest}/>
+          <Route exact path="/mind_test" component={MindTest}/>
+          <Route exact path="/mind_test/result" component={MindTestResult}/>
         </Switch>
       </Router>
     );
