@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const BarButtonWrap = Styled.div`
   select {
@@ -29,11 +28,6 @@ const BarButton = ({ title, option }) => {
       </select>
     </BarButtonWrap>
   );
-};
-
-BarButton.propTypes = {
-  title: PropTypes.string,
-  option: PropTypes.list,
 };
 
 export default BarButton;

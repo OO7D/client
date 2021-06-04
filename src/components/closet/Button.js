@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const ButtonWrap = Styled.div`
   button {
@@ -34,11 +33,6 @@ const Button = ({ text, onClickFunc, size, image }) => {
       </button>
     </ButtonWrap>
   );
-};
-
-Button.propTypes = {
-  text: PropTypes.string,
-  onClickFunc: PropTypes.func,
 };
 
 export default Button;
