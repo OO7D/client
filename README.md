@@ -14,3 +14,7 @@
 (iii) 선호도 테스트
 
 <img width="960" alt="선호도 테스트" src="https://user-images.githubusercontent.com/38969686/120449191-2e263c80-c3ca-11eb-9c59-c5e99b2c15fb.png">
+
+(iv) 심리 테스트
+
+![심리 테스트](https://user-images.githubusercontent.com/38969686/120751627-4d94a500-c543-11eb-95d2-babf48a29d49.jpg)
