@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import toLeft from 'assets/mindTest/toLeft.svg';
-import toRight from 'assets/mindTest/toRight.svg';
 import question1 from 'assets/mindTest/question1.svg';
 import Modal from 'react-awesome-modal';
 import { useHistory } from 'react-router';
@@ -144,29 +142,25 @@ const MindTest = props => {
   const closeModal = () => {
     setVisible(false);
   }
+
+  // SY: 심리 테스트 결과 페이지로 이동하는 함수
   const history = useHistory();
   function goToRec() {
     history.push('/mind_test/result');
     return <></>;
   }
 
-  let [_value, setValue] = useState([0, 0, 0, 0]);
+  const [_value, setValue] = useState([]);
   // SY: 배열에 점수를 넣기 위한 변수 temp
-  let [temp, setTemp] = useState(1);
+  const [temp, setTemp] = useState(1);
 
-  // SY:  확인 버튼을 누르면 실행됨
   function update() {
-    // shallow copy
-    const newArray = [..._value];
-    // mutate copy
-    newArray[selectedQuestion] = Number(temp);
-    console.log(selectedQuestion, temp);
-    // set state
+    // SY: 선택한 답안의 번호를 저장하는 배열 복사 및 추가
+    let newArray = [..._value, Number(temp)];
+    // SY: 새로운 배열의 값으로 기존의 배열 update
     setValue(newArray);
-    console.log(_value);
     if (selectedQuestion === 3){
       // 마지막 이미지면 모달 나타나게 함
-      console.log(_value);
       openModal();
     }
     else
@@ -174,9 +168,7 @@ const MindTest = props => {
       changeColorToGray(0);
   }
 
-  // let tmp;
-
-  // SY: 심리테스트 답안을 바꿀 때 실행됨 -> 배경색 변경?
+  // SY: 심리테스트 답안을 바꿀 때 실행되는 배경색 변경 함수
   function changeColorToGray(value) {
     // 버튼 색 초기화
     if (value === 0){
@@ -216,7 +208,7 @@ const MindTest = props => {
           <div id='modalContainer'>
             <div id='completeState' className='completeState'>심리 테스트가</div>
             <div className='completeState'>완료되었습니다.</div>
-            <input type='button' className='btn' id='okBtn' value='확인' onClick={() => {closeModal(); goToRec();}} ></input>
+            <input type='button' className='btn' id='okBtn' value='확인' onClick={() => {console.log({_value}); closeModal(); goToRec();}} ></input>
           </div>
         </Modal>
       </div>
