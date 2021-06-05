@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import Pencil from '../../assets/pencil.svg';
+import Camera from '../../assets/camera.svg';
 
 const ContainerWrapper = Styled.div`
   * {
@@ -29,11 +30,31 @@ const ContainerWrapper = Styled.div`
         font-size: 22px;
         img {
           height: 28px;
-          float: right;
+        }
+        button {
+          border: none;
+          background-color: transparent;
+          img {
+            vertical-align: top;
+          }
+        }
+        input[type='text'] {
+          border: none;
+          width: 100px;
+          display: inline;
+          font-weight: 500;
+          font-size: 22px;
+          overflow: auto;
+          text-align: center;
         }
         #title {
+          display: flex;
+          justify-content: space-around;
           text-align: center;
-          span {
+          #name {
+            overflow: auto;
+            display: inline-block;
+            width: 100px;
             font-weight: bold;
             font-size: 22px;
           }
@@ -57,20 +78,54 @@ const ContainerWrapper = Styled.div`
 `;
 
 const MypageContents = () => {
+  let userState = [{ name: '상민' }, { age: '20대' }, { gender: '남성' }];
+  const [editMode, setEditMode] = useState(false);
+  const [text, setText] = useState(userState[0].name);
+  const handleChange = e => {
+    setText(e.target.value);
+    userState[0]['name'] = e.target.value;
+  };
   return (
     <ContainerWrapper>
       <div id="box">
         <div id="circle"></div>
         <div id="description-container">
           <div id="title">
-            <input type="text" />
+            {editMode ? (
+              <input
+                type="text"
+                maxLength="5"
+                value={text}
+                onChange={e => handleChange(e)}
+              />
+            ) : (
+              <div id="name" value={userState[0].name}>
+                {text}
+              </div>
+            )}
             <button>
-              <img id="pencil" src={Pencil} alt="Pencil"></img>
+              {editMode ? (
+                <h5
+                  style={{ fontWeight: 'bold' }}
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  저장
+                </h5>
+              ) : (
+                <img
+                  id="pencil"
+                  src={Pencil}
+                  alt="Pencil"
+                  onClick={() => setEditMode(!editMode)}
+                ></img>
+              )}
             </button>
           </div>
           <div id="line"></div>
           <div id="description">
-            <p>20대 여성</p>
+            <p>
+              {userState[0].age}대 {userState[0].gender}
+            </p>
           </div>
         </div>
       </div>

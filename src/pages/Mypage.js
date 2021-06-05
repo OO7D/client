@@ -5,7 +5,7 @@ import InlineTextEdit from 'components/mypage/InlineTextEdit';
 const Mypage = () => {
   return (
     <div>
-      <InlineTextEdit />
+      <MypageContents />
     </div>
   );
 };
