@@ -188,3 +188,7 @@ const upperState = [
 
 - 21-06-03 ~ 21-06-04
   - 심리 테스트 구현 및 흐름도 작성 
+
+- 21-06-05
+  - 심리 테스트 문제의 답안이 담긴 배열이 모달의 확인 버튼을 누르면 console에 나타나게 함
+  - :exclamation: 다음에 useState의 setter 관련 render 공부하기
