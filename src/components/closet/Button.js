@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import PropTypes from 'prop-types';
 import PhotoUpload from './PhotoUpload';
 
 const ButtonWrap = Styled.div`
@@ -41,11 +40,6 @@ const Button = ({ text, onClickFunc, size, image, handleChangeFile }) => {
       </button>
     </ButtonWrap>
   );
-};
-
-Button.propTypes = {
-  text: PropTypes.string,
-  onClickFunc: PropTypes.func,
 };
 
 export default Button;
