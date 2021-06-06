@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import PropTypes from 'prop-types';
+import PhotoUpload from './PhotoUpload';
 
 const ButtonWrap = Styled.div`
   button {
@@ -23,11 +24,17 @@ const ButtonWrap = Styled.div`
     height: 70px;
     margin-bottom: 10px;
   }
+  input[type="file"] {
+    display: none;
+  }
 `;
 
-const Button = ({ text, onClickFunc, size, image }) => {
+const Button = ({ text, onClickFunc, size, image, handleChangeFile }) => {
   return (
     <ButtonWrap>
+      {text === '새 옷 추가하기' && (
+        <PhotoUpload onChangeFunc={handleChangeFile} />
+      )}
       <button onClick={onClickFunc} style={{ fontSize: size }}>
         <img src={image} alt="" />
         {text}

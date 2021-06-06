@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styled from 'styled-components';
@@ -27,8 +27,25 @@ const ClosetMainWrap = Styled.div`
   }
 `;
 
-const ClosetMain = ({ history, match }) => {
+const ClosetMain = ({ history, match, pic, setPic }) => {
   const mode = match.path === '/closet' ? 'main' : '';
+
+  const handleChangeFile = event => {
+    let reader = new FileReader();
+    const data = event.target.files[0];
+
+    if (data) {
+      reader.readAsDataURL(data);
+    }
+
+    reader.onloadend = () => {
+      setPic({
+        file: data,
+        preview: reader.result,
+      });
+      history.push('/closet/new');
+    };
+  };
 
   return (
     <ClosetMainWrap>
@@ -53,7 +70,8 @@ const ClosetMain = ({ history, match }) => {
         {mode ? (
           <Button
             text={'새 옷 추가하기'}
-            onClickFunc={() => history.push('/closet/new')}
+            handleChangeFile={handleChangeFile}
+            // onClick={'onclick=document.all.file.click()'}
             image={camera}
           />
         ) : (

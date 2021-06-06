@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import NewBox from '../components/closet/NewBox';
 import { withRouter } from 'react-router-dom';
@@ -39,11 +39,22 @@ const ClosetNewWrap = Styled.div`
   }
 `;
 
-const ClosetNew = ({ history }) => {
+const ClosetNew = ({ clothes, setClothes, pic, history }) => {
+  // useEffect(() => {
+  //   // 서버 요청 코드
+  //   setClothes({
+  //     image: pic,
+  //     title: '바지 1',
+  //     colors: { white: 92, gray: 8 },
+  //     type: '바지',
+  //     weather: '봄/가을',
+  //   });
+  // }, []);
+
   return (
     <ClosetNewWrap>
       <div className="text">거의 다 됐어요!</div>
-      <NewBox />
+      <NewBox clothes={clothes} setClothes={setClothes} />
       <div className="buttons">
         <button
           className="buttons__replay"

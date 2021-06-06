@@ -34,6 +34,7 @@ const getTitle = path => {
     case '/closet/grid':
       return '옷장';
     case '/closet/new':
+    case '/closet/new/edit':
       return '옷 추가';
     case '/closet/complete':
       return '완료';

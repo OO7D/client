@@ -48,7 +48,7 @@ const ClosetGridWrap = Styled.div`
 const ClosetGrid = ({ match }) => {
   const mode = match.path === '/closet/grid' ? 'closet' : '';
   const [selected, setSelected] = useState(null);
-  console.log(selected);
+
   const imageList = [
     sample1,
     sample1,
@@ -90,7 +90,9 @@ const ClosetGrid = ({ match }) => {
           ) : (
             <button
               className="submit"
-              style={{ backgroundColor: selected ? '#F79C43' : 'gray' }}
+              style={{
+                backgroundColor: selected !== null ? '#F79C43' : 'gray',
+              }}
             >
               선택
             </button>

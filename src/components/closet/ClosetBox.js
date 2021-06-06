@@ -1,6 +1,5 @@
 import React from 'react';
 import Styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const ClosetBoxWrap = Styled.div`
   width: 100px;
@@ -13,7 +12,7 @@ const ClosetBoxWrap = Styled.div`
   }
   input {
     z-index: 2;
-    position: relative;
+    position: relative; 
     top: -100px;
     left: 70px;
     width: 22px;
@@ -32,10 +31,6 @@ const ClosetBox = ({ id, image, setSelected, mode }) => {
       )}
     </ClosetBoxWrap>
   );
-};
-
-ClosetBox.propTypes = {
-  image: PropTypes.object,
 };
 
 export default ClosetBox;
