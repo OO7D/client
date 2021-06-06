@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import MainHeader from './components/common/MainHeader';
-=======
-import React from 'react';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
->>>>>>> 44ad524636d562552babcf08d9f5a758605a962f
 import Main from './pages/Main';
 import Recommendation from './pages/Recommendation';
 import RandomLoading from './pages/RandomLoading';
