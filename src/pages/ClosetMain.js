@@ -1,8 +1,18 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React, { useEffect } from 'react';
+>>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../components/closet/Button';
+<<<<<<< HEAD
+=======
+import shirt from '../assets/shirt.png';
+import question from '../assets/question.png';
+import camera from '../assets/camera.svg';
+>>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 
 const ClosetMainWrap = Styled.div`
   display: flex;
@@ -24,6 +34,7 @@ const ClosetMainWrap = Styled.div`
   }
 `;
 
+<<<<<<< HEAD
 const ClosetMain = ({ history }) => {
   return (
     <ClosetMainWrap>
@@ -34,6 +45,58 @@ const ClosetMain = ({ history }) => {
           onClickFunc={() => history.push('/closet/grid')}
         />
         <Button text={'새 옷 추가하기'} />
+=======
+const ClosetMain = ({ history, match, pic, setPic }) => {
+  const mode = match.path === '/closet' ? 'main' : '';
+
+  const handleChangeFile = event => {
+    let reader = new FileReader();
+    const data = event.target.files[0];
+
+    if (data) {
+      reader.readAsDataURL(data);
+    }
+
+    reader.onloadend = () => {
+      setPic({
+        file: data,
+        preview: reader.result,
+      });
+      history.push('/closet/new');
+    };
+  };
+
+  return (
+    <ClosetMainWrap>
+      <div className="title">
+        {mode ? '상민님, 오늘은 OOO 어떠세요?' : '옷 추천을 도와드릴까요?'}
+      </div>
+      <div className="buttons">
+        {mode ? (
+          <Button
+            text={'옷장 보기'}
+            onClickFunc={() => history.push('/closet/grid')}
+            image={shirt}
+          />
+        ) : (
+          <Button
+            text={'옷장에서 옷 고르기'}
+            onClickFunc={() => history.push('/recommend/grid')}
+            image={shirt}
+            size="15px"
+          />
+        )}
+        {mode ? (
+          <Button
+            text={'새 옷 추가하기'}
+            handleChangeFile={handleChangeFile}
+            // onClick={'onclick=document.all.file.click()'}
+            image={camera}
+          />
+        ) : (
+          <Button text={'랜덤으로 추천받기'} size="15px" image={question} />
+        )}
+>>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
       </div>
     </ClosetMainWrap>
   );
