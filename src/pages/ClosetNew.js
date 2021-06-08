@@ -8,6 +8,7 @@ const ClosetNewWrap = Styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: black;
   .text {
     font-size: 25px;
     font-weight: bold;
@@ -39,7 +40,8 @@ const ClosetNewWrap = Styled.div`
   }
 `;
 
-const ClosetNew = ({ clothes, setClothes, pic, history }) => {
+const ClosetNew = ({ clothes, setClothes, imageList, pic, history, match }) => {
+  const index = match.params.id;
   // useEffect(() => {
   //   // 서버 요청 코드
   //   setClothes({
@@ -53,8 +55,10 @@ const ClosetNew = ({ clothes, setClothes, pic, history }) => {
 
   return (
     <ClosetNewWrap>
-      <div className="text">거의 다 됐어요!</div>
-      <NewBox clothes={clothes} setClothes={setClothes} />
+      <div className="text">
+        {imageList ? '옷 상세 보기' : '거의 다 됐어요!'}
+      </div>
+      <NewBox clothes={index ? index : clothes} setClothes={setClothes} />
       <div className="buttons">
         <button
           className="buttons__replay"
