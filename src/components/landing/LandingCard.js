@@ -82,7 +82,7 @@ const CardWrap = Styled.div`
         background-color: #6B390A;
     }
     #information {
-      width: 67px;
+      width: 80px;
       h2 {
         margin-top: 3px;
         text-align: left;

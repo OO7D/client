@@ -47,11 +47,14 @@ const LandingContentsWrap = Styled.div`
     width: 190px;
     margin-left: 25px;
   }
-  #line1 {
+  #line1, #line2 {
     text-shadow: 0.2px 0.2px white, -0.2px -0.2px #444;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
+  }
+  #line1 {
+    width: 200px;
   }
   #landing-title {
       font-size: 20px;
@@ -178,7 +181,7 @@ const LandingContents = () => {
           </div>
         </div>
         <div id="brand-description">
-          <div id="line1">
+          <div id="line2">
             <span style={{ color: '#F79C43' }}>당신</span>에게 어울리는{' '}
             <span style={{ color: '#F79C43' }}>패션 브랜드</span>는?
           </div>
