@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import MainContents from '../components/main/MainContents';
 
 const Main = () => {
   return (
     <>
-      <h1>Main Page</h1>
+      <MainContents />
     </>
   );
 };

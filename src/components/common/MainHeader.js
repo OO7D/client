@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.svg';
 import Styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MainHeaderWrap = Styled.div`
   .logo {
@@ -68,6 +69,11 @@ const MainHeader = ({ history, location }) => {
       <div className="title">{title}</div>
     </MainHeaderWrap>
   );
+};
+
+MainHeader.propTypes = {
+  history: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default withRouter(MainHeader);
