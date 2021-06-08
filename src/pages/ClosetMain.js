@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useEffect } from 'react';
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../components/closet/Button';
-<<<<<<< HEAD
-=======
 import shirt from '../assets/shirt.png';
 import question from '../assets/question.png';
 import camera from '../assets/camera.svg';
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 
 const ClosetMainWrap = Styled.div`
   display: flex;
@@ -34,18 +27,6 @@ const ClosetMainWrap = Styled.div`
   }
 `;
 
-<<<<<<< HEAD
-const ClosetMain = ({ history }) => {
-  return (
-    <ClosetMainWrap>
-      <div className="title">상민님, 오늘은 OOO 어떠세요?</div>
-      <div className="buttons">
-        <Button
-          text={'옷장 보기'}
-          onClickFunc={() => history.push('/closet/grid')}
-        />
-        <Button text={'새 옷 추가하기'} />
-=======
 const ClosetMain = ({ history, match, pic, setPic }) => {
   const mode = match.path === '/closet' ? 'main' : '';
 
@@ -96,7 +77,6 @@ const ClosetMain = ({ history, match, pic, setPic }) => {
         ) : (
           <Button text={'랜덤으로 추천받기'} size="15px" image={question} />
         )}
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
       </div>
     </ClosetMainWrap>
   );

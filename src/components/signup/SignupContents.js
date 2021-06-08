@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import axios from 'axios';
 
 // import { useForm } from 'react-hook-form';
 import Styled from 'styled-components';
@@ -13,6 +14,9 @@ import transparent_check from '../../assets/transparent_check.svg';
 const SignupContentsWrap = Styled.div`
   * {
       color: #859594;
+  }
+  h2 {
+    margin-top: 0px;
   }
   img {
     width: 15px;;
@@ -92,7 +96,7 @@ const SignupContentsWrap = Styled.div`
             height: 15px;
         }
         :checked + label {
-          background-image: url(${transparent_check});
+          background-imAge: url(${transparent_check});
           background-size: cover;
         }
       }
@@ -146,7 +150,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignupContents = ({ history, props }) => {
+const SignupContents = (history, props) => {
   const classes = useStyles();
   const [checkedInputs, setCheckedInputs] = useState([]);
 
@@ -160,24 +164,55 @@ const SignupContents = ({ history, props }) => {
     }
   };
 
-  const [searchSex, setSearchSex] = useState('');
-  const [searchAge, setSearchAge] = useState('');
+  const [Gender, setGender] = useState('');
+  const [Age, setAge] = useState('');
 
   const handleChange = (e, type) => {
-    const value = e.target.value;
-    if (type === 'sex') {
-      setSearchSex(value);
-      console.log('성별 반영 완료');
+    const value = e.currentTarget.value;
+    if (type === 'Gender') {
+      setGender(value);
+      console.log(value);
     } else {
-      setSearchAge(value);
-      console.log('연령대 반영 완료');
+      setAge(value);
+      console.log(value);
     }
+  };
+
+  // const fetchSelect = async () => {
+  //   const response = await axios('http://localhost:3000/signup', {
+  //     Age: Age,
+  //     Gender: Gender,
+  //   });
+  //   console.log(response.data);
+  // };
+  // useEffect((props, history) => {
+  //   async function onSubmitHandler() {
+  //     const result = await axios.get('http://localhost:3000/signup', {
+  //       gender: Gender,
+  //       age: Age,
+  //     });
+  //     console.log(result.data);
+  //     props.setIsSignedUp(true);
+  //     history.push('/signupcomplete');
+  //   }
+  //   onSubmitHandler();
+  // }, [])
+  const onSubmitHandler = async (props, history) => {
+    console.log('Gender', Gender);
+    console.log('Age', Age);
+    const response = await axios.post('/signup', {
+      gender: Gender,
+      age: Age,
+    });
+    console.log(response.data);
+    props.setIsSignedUp(true);
+    history.push('/signupcomplete');
   };
 
   const disabled = !(
     (checkedInputs.length === 2) &
-    (searchSex !== '') &
-    (searchAge !== '')
+    (Gender !== '') &
+    (Age !== '')
   );
 
   return (
@@ -236,8 +271,8 @@ const SignupContents = ({ history, props }) => {
           <FormControl className={classes.formControl}>
             <NativeSelect
               className={classes.selectEmpty}
-              value={searchSex}
-              onChange={e => handleChange(e, 'sex')}
+              value={Gender}
+              onChange={e => handleChange(e, 'Gender')}
             >
               <option value="">성별</option>
               <option value={'남성'}>남성</option>
@@ -247,8 +282,8 @@ const SignupContents = ({ history, props }) => {
           <FormControl className={classes.formControl}>
             <NativeSelect
               className={classes.selectEmpty}
-              value={searchAge}
-              onChange={e => handleChange(e, 'age')}
+              value={Age}
+              onChange={e => handleChange(e, 'Age')}
             >
               <option value="">연령대</option>
               <option value={'10대'}>10대</option>
@@ -280,10 +315,7 @@ const SignupContents = ({ history, props }) => {
             id="submitbtn"
             value="확인"
             disabled={disabled}
-            onClick={
-              (() => props.setIsSignedUp(true),
-              () => history.push('/signupcomplete'))
-            }
+            onClick={onSubmitHandler}
             style={{
               backgroundColor: disabled ? '#859594' : '#F79C43',
               fontSize: '23px',

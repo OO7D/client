@@ -1,11 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
-<<<<<<< HEAD
-import PropTypes from 'prop-types';
-=======
 // SY: 문제 --> radio가 두번씩 클릭됨, 왜냐하면 기존 radio의 visibility를 hidden으로 해 놔서 사실은 두 개인데, 하나인 것처럼 보이게 해 놨기 때문
 // SY: 문제 --> 그래서 display를 none으로 하려고 했는데 그러면 아예 radio가 안 보임
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 
 const ClosetBoxWrap = Styled.div`
   width: 100px;
@@ -16,14 +12,6 @@ const ClosetBoxWrap = Styled.div`
     width: inherit;
     height: inherit;
   }
-<<<<<<< HEAD
-`;
-
-const ClosetBox = ({ image }) => {
-  return (
-    <ClosetBoxWrap>
-      <img src={image} />
-=======
   input[type='radio'] {
     visibility: hidden;
     -webkit-appearance: none;
@@ -67,16 +55,8 @@ const ClosetBox = ({ id, image, setSelected, mode }) => {
       ) : (
         <input type="radio" name="select" onClick={() => setSelected(id)} />
       )}
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
     </ClosetBoxWrap>
   );
 };
 
-<<<<<<< HEAD
-ClosetBox.propTypes = {
-  image: PropTypes.object,
-};
-
-=======
->>>>>>> 1b5d98a8f69fc4d785a1c645190f4e4fd3eac2a6
 export default ClosetBox;

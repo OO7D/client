@@ -1,11 +1,10 @@
 import React from 'react';
-import MypageContents from '../components/mypage/MypageContents';
-import InlineTextEdit from 'components/mypage/InlineTextEdit';
+import InlineTextEdit from '../components/mypage/InlineTextEdit';
 
 const Mypage = () => {
   return (
     <div>
-      <MypageContents />
+      <InlineTextEdit />
     </div>
   );
 };
