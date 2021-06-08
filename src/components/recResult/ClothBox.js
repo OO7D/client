@@ -61,6 +61,10 @@ const ClothBoxWrap = Styled.div`
   font-size: 11px;
   text-align: center;
   font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90px;
 }
 #clothColor{
   display: inline-block;
