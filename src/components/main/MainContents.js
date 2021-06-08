@@ -89,11 +89,11 @@ const MainContents = ({ history }) => {
           </div>
         </div>
         <div id="contents-container">
-          <div id="icon3" onClick={() => history.push('/test')}>
+          <div id="icon3" onClick={() => history.push('/mind_test')}>
             <i id="mindTest" className="fas fa-clipboard-list"></i>
             <h2>심리테스트</h2>
           </div>
-          <div id="icon4" onClick={() => history.push('/recommend')}>
+          <div id="icon4" onClick={() => history.push('/recommendation')}>
             <i id="recommend" className="fas fa-tshirt"></i>
             <h2>옷 추천</h2>
           </div>
@@ -102,7 +102,7 @@ const MainContents = ({ history }) => {
           <div id="icon5" onClick={() => history.push('/mypage')}>
             <i id="myPage" className="fas fa-user"></i> <h2>마이페이지</h2>
           </div>
-          <div id="icon6" onClick={() => history.push('/pretest')}>
+          <div id="icon6" onClick={() => history.push('/preference_test')}>
             <img id="pretest" src={pretest} alt="pretest" />
             <h2>선호도테스트</h2>
           </div>
