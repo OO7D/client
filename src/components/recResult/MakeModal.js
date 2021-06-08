@@ -43,7 +43,7 @@ const MakeModalWrap = Styled.div`
 
 const MakeModal = props => {
   const [isVisible, setVisible] = useState(props.visible);
-  const recMode = useState(props.recMode)[0];
+  const recMode = useState(props.recMethod)[0];
   const openModal = () => {
     setVisible(true);
   }
