@@ -22,8 +22,8 @@ const ClosetBoxWrap = Styled.div`
     width: 20px;
     height: 20px;
     border-radius: 15px;
-    top: -100px;
-    left: 78px;
+    top: -105px;
+    left: 70px;
     position: relative;
     background-color: #d1d3d1;
     content: '';
@@ -35,8 +35,8 @@ const ClosetBoxWrap = Styled.div`
     width: 20px;
     height: 20px;
     border-radius: 15px;
-    top: -100px;
-    left: 78px;
+    top: -105px;
+    left: 70px;
     position: relative;
     background-color: black;
     content: '';
