@@ -44,7 +44,7 @@ const ClosetGridWrap = Styled.div`
   }
 `;
 
-const ClosetGrid = ({ imageList, match }) => {
+const ClosetGrid = ({ imageList, match, history }) => {
   const mode = match.path === '/closet/grid' ? 'closet' : '';
   const [selected, setSelected] = useState(null);
   const [isDelete, setIsDelete] = React.useState(false);
@@ -77,6 +77,7 @@ const ClosetGrid = ({ imageList, match }) => {
             />
           ) : (
             <button
+              onClick={history.push('/recommendation/loading_selected')}
               className="submit"
               style={{
                 backgroundColor: selected !== null ? '#F79C43' : 'gray',
