@@ -89,11 +89,11 @@ const LandingContentsWrap = Styled.div`
     text-align: center;
     margin: 46px 0 47px 0;
     font-size: 33px;
-    h2, #sub {
+    h3, #sub {
       color: black;
       font-weight: 800;
     }
-    h2 {
+    h3 {
         margin: 0 100px 0 0;
     }
     #sub {
@@ -194,13 +194,12 @@ const LandingContents = () => {
           </Link>
           <div id="ps">* 로그인 하지 않아도 이용하실 수 있습니다.</div>
           <div id="start">
-            <h2>지금</h2>
+            <h3>지금</h3>
             <div id="sub">시작하세요</div>
           </div>
           <div id="login">
             <h2>간편 로그인</h2>
             <div id="login-button">
-              {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
               <KakaoLogin />
             </div>
           </div>

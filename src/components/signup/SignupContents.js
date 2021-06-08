@@ -86,17 +86,18 @@ const SignupContentsWrap = Styled.div`
       text-align: center;
       font-size: 20px;
       input[id='check'], input[id='check2'] {
-          display: none;
+        display: none;
           + label {
+            display: inline-block;
             font-weight: normal;
-            vertical-align: -6px;
+
             margin-right: 8px;
             border: 1px solid #CABFC5;
             width: 15px;
             height: 15px;
         }
         :checked + label {
-          background-imAge: url(${transparent_check});
+          background-image: url(${transparent_check});
           background-size: cover;
         }
       }
@@ -107,7 +108,7 @@ const SignupContentsWrap = Styled.div`
         color: #000000;
         text-align: center;
         font-size: 14px;
-        margin-bottom: 18px;
+        margin: 18px auto;
       }
     }
     .makeStyles-selectEmpty-2 {
@@ -152,6 +153,7 @@ const useStyles = makeStyles(theme => ({
 
 const SignupContents = (history, props) => {
   const classes = useStyles();
+
   const [checkedInputs, setCheckedInputs] = useState([]);
 
   const changeHandler = (checked, id) => {
