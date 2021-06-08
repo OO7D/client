@@ -16,8 +16,8 @@ const MindtestWrap = Styled.div`
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    width: 230px;
-    height: 16px;
+    width: 350px;
+    height: 20px;
     margin-top: 51px;
     margin-bottom: 35px;
   }
@@ -33,7 +33,7 @@ const MindtestWrap = Styled.div`
   }
   .answers{
     margin-top:17px;
-    width: 231px;
+    width: 350px;
     height: 43px;
     text-align: center;
     font-size: 14px;
@@ -107,29 +107,39 @@ const MindtestWrap = Styled.div`
 const MindTest = props => {
   // SY: 화면에 나타나는 이미지가 몇 번째 이미지인지 파악할 수 있도록 하는 변수 선언
   let [selectedQuestion, setSelectedQuestion] = useState(0);
-  // SY: 1번, 2번, 3번, 4번 질문에 따라 나타날 질문과 답안, 이미지들
+  // SY: 1번, 2번, 3번, 4번, 5번, 6번 질문에 따라 나타날 질문과 답안, 이미지들
   const questions = [
-      {question: 'Q1. 1번 질문입니다.'},
-      {question: 'Q2. 2번 질문입니다.'},
-      {question: 'Q3. 3번 질문입니다.'},
-      {question: 'Q4. 4번 질문입니다.'}
+      {question: 'Q1. 가고 싶은 해외여행지는?'},
+      {question: 'Q2. 오랜만에 온 휴가를 어떻게 보낼 건가요?'},
+      {question: 'Q3. 술 먹고 싶은 날, 당신의 행동은?'},
+      {question: 'Q4. 데이트 장소로 선호하는 곳은?'},
+      {question: 'Q5. 코로나가 끝나면 하고 싶은 것은?'},
+      {question: 'Q6. 단톡방에 카톡 수백 개가 쌓였을 때 당신의 행동은?'}
   ];
   const answers = [
-      {answer: ['1번의 1번 답입니다.', '1번의 2번 답입니다.', '1번의 3번 답입니다.', '1번의 4번 답입니다.']},
-      {answer: ['2번의 1번 답입니다.', '2번의 2번 답입니다.', '2번의 3번 답입니다.', '2번의 4번 답입니다.']},
-      {answer: ['3번의 1번 답입니다.', '3번의 2번 답입니다.', '3번의 3번 답입니다.', '3번의 4번 답입니다.']},
-      {answer: ['4번의 1번 답입니다.', '4번의 2번 답입니다.', '4번의 3번 답입니다.', '4번의 4번 답입니다.']}
+      {answer: ['프랑스', '이탈리아', '미국', '영국']},
+      {answer: ['집에서 유튜브를 보면서 뒹굴거린다', '혼자서 여유롭게 책도 읽고 산책도 한다', 
+      '친구들과 요즘 SNS에서 핫한 장소에 놀러간다', '보고 싶었던 전시회를 보러 간다']},
+      {answer: ['집에서 혼자 술을 마신다', '친구들과 만나 가볍게 한 잔 한다', 
+      '친구들과 만나 취할 때까지 마신다', '그 날의 기분에 따라 다르게 행동한다']},
+      {answer: ['집', '영화관', '놀이동산', '그 날의 기분에 따라 다른 장소']},
+      {answer: ['집에서 콕 박혀서 유튜브와 함께한다', '한적한 산에 가서 글램핑을 한다', 
+      '방방곡곡 맛집탐방을 간다', '핫한 클럽에 가서 춤추면서 논다']},
+      {answer: ['알림을 끄고 확인하지 않는다', '들어가서 읽기만 하고 답장은 하지 않는다', 
+      '하나하나 다 읽어보고 답장한다', '단톡방을 나간다']}
   ];
   const images = [
+      {src: {question1}},
+      {src: {question1}},
       {src: {question1}},
       {src: {question1}},
       {src: {question1}},
       {src: {question1}}
   ]
 
-// SY: 화면에 나타난 옷의 순서에서 +1을 하는 함수
+// SY: 화면에 나타난 질문의 순서에서 +1을 하는 함수
   function plusNumber() {
-    if (selectedQuestion < 3) {
+    if (selectedQuestion < 5) {
       setSelectedQuestion(selectedQuestion+1);
     }
   }
@@ -159,7 +169,7 @@ const MindTest = props => {
     let newArray = [..._value, Number(temp)];
     // SY: 새로운 배열의 값으로 기존의 배열 update
     setValue(newArray);
-    if (selectedQuestion === 3){
+    if (selectedQuestion === 5){
       // 마지막 이미지면 모달 나타나게 함
       openModal();
     }

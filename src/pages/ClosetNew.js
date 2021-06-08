@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import NewBox from '../components/closet/NewBox';
 import { withRouter } from 'react-router-dom';
@@ -8,6 +8,7 @@ const ClosetNewWrap = Styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: black;
   .text {
     font-size: 25px;
     font-weight: bold;
@@ -39,11 +40,25 @@ const ClosetNewWrap = Styled.div`
   }
 `;
 
-const ClosetNew = ({ history }) => {
+const ClosetNew = ({ clothes, setClothes, imageList, pic, history, match }) => {
+  const index = match.params.id;
+  // useEffect(() => {
+  //   // 서버 요청 코드
+  //   setClothes({
+  //     image: pic,
+  //     title: '바지 1',
+  //     colors: { white: 92, gray: 8 },
+  //     type: '바지',
+  //     weather: '봄/가을',
+  //   });
+  // }, []);
+
   return (
     <ClosetNewWrap>
-      <div className="text">거의 다 됐어요!</div>
-      <NewBox />
+      <div className="text">
+        {imageList ? '옷 상세 보기' : '거의 다 됐어요!'}
+      </div>
+      <NewBox clothes={index ? index : clothes} setClothes={setClothes} />
       <div className="buttons">
         <button
           className="buttons__replay"

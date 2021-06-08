@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Styled from 'styled-components';
 import ClosetBar from '../components/closet/ClosetBar';
 import ClosetBox from '../components/closet/ClosetBox';
-import sample1 from '../assets/image/sample1.jpg';
 import deleteIcon from '../assets/delete.svg';
 import { withRouter } from 'react-router-dom';
 
@@ -45,27 +44,10 @@ const ClosetGridWrap = Styled.div`
   }
 `;
 
-const ClosetGrid = ({ match }) => {
+const ClosetGrid = ({ imageList, match }) => {
   const mode = match.path === '/closet/grid' ? 'closet' : '';
   const [selected, setSelected] = useState(null);
-  console.log(selected);
-  const imageList = [
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-  ];
+  const [isDelete, setIsDelete] = React.useState(false);
 
   return (
     <>
@@ -80,17 +62,25 @@ const ClosetGrid = ({ match }) => {
                 image={image}
                 setSelected={setSelected}
                 mode={mode}
+                isDelete={isDelete}
               />
             );
           })}
         </div>
         <div className="button">
           {mode ? (
-            <img src={deleteIcon} />
+            <img
+              src={deleteIcon}
+              onClick={() => {
+                isDelete ? setIsDelete(false) : setIsDelete(true);
+              }}
+            />
           ) : (
             <button
               className="submit"
-              style={{ backgroundColor: selected ? '#F79C43' : 'gray' }}
+              style={{
+                backgroundColor: selected !== null ? '#F79C43' : 'gray',
+              }}
             >
               선택
             </button>

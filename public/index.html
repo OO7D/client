@@ -2,7 +2,47 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"
+    />
+    <!-- <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    /> -->
+    <!-- OAuth: Google -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="13133483190-l3msutanq9vke230331c0vtv5190cj99.apps.googleusercontent.com"
+    />
+
+    <!-- OAuth: Kakao -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+      Kakao.init('43c826e6ac9da452ff55f5830f1d3ae7');
+    </script>
+    <!-- fontawesome, bootstrap 아이콘 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <!--     <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+ -->
+    <!-- material-UI -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+
+    <link rel=“stylesheet” href=“https://use.typekit.net/hgf0iyy.css”>
     <title>OO7D</title>
     <!-- SY: 페이스북 공유 썸네일 설정 -->
     <meta property="og:url" content="https://www.naver.com/" />
@@ -10,7 +50,7 @@
     <meta property="og:title" content="성공? or not" />
     <meta property="og:description" content="오늘 추천받은 옷!" />
     <meta property="og:image" content="../src/assets/people.jpg" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
   </head>
   <body>
     <div id="root"></div>

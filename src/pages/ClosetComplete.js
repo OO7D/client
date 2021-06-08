@@ -2,6 +2,7 @@ import React from 'react';
 import check from '../assets/check.png';
 import Styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import PhotoUpload from '../components/closet/PhotoUpload';
 
 const ClosetCompleteWrap = Styled.div`
   display: flex;
@@ -48,7 +49,24 @@ const ClosetCompleteWrap = Styled.div`
   }
 `;
 
-const ClosetComplete = ({ history }) => {
+const ClosetComplete = ({ setPic, history }) => {
+  const handleChangeFile = event => {
+    let reader = new FileReader();
+    const data = event.target.files[0];
+
+    if (data) {
+      reader.readAsDataURL(data);
+    }
+
+    reader.onloadend = () => {
+      setPic({
+        file: data,
+        preview: reader.result,
+      });
+      history.push('/closet/new');
+    };
+  };
+
   return (
     <ClosetCompleteWrap>
       <div className="circle">
@@ -63,11 +81,12 @@ const ClosetComplete = ({ history }) => {
       <button className="closet" onClick={() => history.push('/closet/grid')}>
         옷장으로 가기
       </button>
-      <button className="replay" onClick={() => history.push('/closet')}>
+      <button className="replay">
+        <PhotoUpload onChangeFunc={handleChangeFile} />
         하나 더 추가하기
       </button>
     </ClosetCompleteWrap>
   );
 };
 
-export default ClosetComplete;
+export default withRouter(ClosetComplete);

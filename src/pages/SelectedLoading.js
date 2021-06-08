@@ -4,6 +4,7 @@ import { useHistory, location } from 'react-router';
 import Styled from 'styled-components';
 import cloth from '../assets/loading/cloth.svg';
 import circle from '../assets/loading/circle.svg';
+import { withRouter } from 'react-router-dom';
 
 const SelectedLoadingWrap = Styled.div`
   .loadingContainer{
@@ -26,23 +27,31 @@ const SelectedLoadingWrap = Styled.div`
   }
 `;
 
-const SelectedLoading = () => {
+const SelectedLoading = ({ location }) => {
   // SY: 여기서 옷 추천 함수 호출하고 --> RandomRecResult에서 함수 결과 리턴받아야 함 !서버! 연결, 결과 리턴받을 때 웹크롤링 여부까지 같이 받기 default는 webcrawl = false
   const history = useHistory();
   setTimeout(() => {
-    history.push('/recommendation/result_selected');
+    if (location.state?.data) {
+      console.log(location.state.data);
+      history.push('/closet/new');
+    } else {
+      history.push('/recommendation/result_selected');
+    }
     // SY: Functions are not valid as a React child 에러 고치기 위해 빈 태그 return
     return <></>;
-  }, 10000);
+    // SY: 3초 뒤에 페이지 이동
+  }, 3000);
   return (
     <SelectedLoadingWrap>
-      <div className='loadingContainer'>
-        <img id='circle' src={circle}></img>
-        <img id='cloth' src={cloth}></img>
+      <div className="loadingContainer">
+        <img id="circle" src={circle}></img>
+        <img id="cloth" src={cloth}></img>
       </div>
-      <div id='loadingState' className='loadingContainer'>결과를 불러오는 중입니다...</div>
+      <div id="loadingState" className="loadingContainer">
+        결과를 불러오는 중입니다...
+      </div>
     </SelectedLoadingWrap>
   );
 };
 
-export default SelectedLoading;
+export default withRouter(SelectedLoading);
