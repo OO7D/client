@@ -3,6 +3,8 @@ import Styled from 'styled-components';
 import camera from '../../assets/camera.svg';
 import closet from '../../assets/closet.svg';
 import brand from '../../assets/brand.svg';
+import Balenciaga from '../../assets/Balenciaga.jpeg';
+import LV from '../../assets/LV.jpeg';
 import KakaoLogin from '../../lib/KakaoLogin';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -187,8 +189,8 @@ const LandingContents = () => {
           </div>
           <div id="brand-container">
             <img id="brand" src={brand} alt="brand" />
-            <img id="brand" src={brand} alt="brand" />
-            <img id="brand" src={brand} alt="brand" />
+            <img id="brand" src={Balenciaga} alt="Balenciaga" />
+            <img id="brand" src={LV} alt="LV" />
           </div>
           <Link to="/mind_test">
             <Button>
