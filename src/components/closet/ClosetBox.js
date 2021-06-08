@@ -1,5 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 // SY: 문제 --> radio가 두번씩 클릭됨, 왜냐하면 기존 radio의 visibility를 hidden으로 해 놔서 사실은 두 개인데, 하나인 것처럼 보이게 해 놨기 때문
 // SY: 문제 --> 그래서 display를 none으로 하려고 했는데 그러면 아예 radio가 안 보임
 
@@ -22,7 +23,7 @@ const ClosetBoxWrap = Styled.div`
     width: 20px;
     height: 20px;
     border-radius: 15px;
-    top: -105px;
+    top: -100px;
     left: 70px;
     position: relative;
     background-color: #d1d3d1;
@@ -35,7 +36,7 @@ const ClosetBoxWrap = Styled.div`
     width: 20px;
     height: 20px;
     border-radius: 15px;
-    top: -105px;
+    top: -100px;
     left: 70px;
     position: relative;
     background-color: black;
@@ -46,12 +47,14 @@ const ClosetBoxWrap = Styled.div`
   }
 `;
 
-const ClosetBox = ({ id, image, setSelected, mode }) => {
+const ClosetBox = ({ id, image, setSelected, isDelete, mode, history }) => {
   return (
     <ClosetBoxWrap>
-      <img src={image} />
+      <img src={image} onClick={() => history.push(`/closet/detail/${id}`)} />
       {mode ? (
-        ''
+        isDelete && (
+          <input type="radio" name="select" onClick={() => setSelected(id)} />
+        )
       ) : (
         <input type="radio" name="select" onClick={() => setSelected(id)} />
       )}

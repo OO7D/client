@@ -13,10 +13,14 @@ const ClosetMainWrap = Styled.div`
   align-items: center;
   justify-content: center;
   height: 70vh;
-  .title {
-    font-size: 24px;
+  .title p {
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 48px;
+    color: black;
+  }
+  .title span {
+    color: #859594;
   }
   .buttons {
     width: 85vw;
@@ -24,6 +28,12 @@ const ClosetMainWrap = Styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+  .em {
+    color: black !important;
+    font-size: 28px;
+    padding-bottom: 10px;
+    display: inline-block;
   }
 `;
 
@@ -43,14 +53,21 @@ const ClosetMain = ({ history, match, pic, setPic }) => {
         file: data,
         preview: reader.result,
       });
-      history.push('/closet/new');
+      history.push('/recommendation/loading_selected', { data: '사진 분석' });
     };
   };
 
   return (
     <ClosetMainWrap>
       <div className="title">
-        {mode ? '상민님, 오늘은 OOO 어떠세요?' : '옷 추천을 도와드릴까요?'}
+        {mode ? (
+          <p>
+            <span className="em">상민님,</span>
+            <br /> 오늘은 <span>단정한 세미정장</span> 어떠세요?
+          </p>
+        ) : (
+          <p>옷 추천을 도와드릴까요?</p>
+        )}
       </div>
       <div className="buttons">
         {mode ? (
