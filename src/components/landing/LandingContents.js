@@ -1,10 +1,10 @@
 import React, { useHistory } from 'react';
-import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import camera from '../../assets/camera.svg';
 import closet from '../../assets/closet.svg';
 import brand from '../../assets/brand.svg';
 import KakaoLogin from '../../lib/KakaoLogin';
+import { withRouter, Link } from 'react-router-dom';
 
 const LandingContentsWrap = Styled.div`
   * {
@@ -187,7 +187,7 @@ const LandingContents = () => {
             <img id="brand" src={brand} alt="brand" />
             <img id="brand" src={brand} alt="brand" />
           </div>
-          <Link to="/test">
+          <Link to="/mind_test">
             <Button>
               <h2>심리테스트 하러 가기</h2>
             </Button>
@@ -209,4 +209,4 @@ const LandingContents = () => {
   );
 };
 
-export default LandingContents;
+export default withRouter(LandingContents);
