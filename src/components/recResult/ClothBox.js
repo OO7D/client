@@ -15,13 +15,13 @@ const ClothBoxWrap = Styled.div`
   height: 105px;
   border: 1px solid white;
   background: white;
-  border-radius: 5%;
+  border-radius: 5px;
   margin: 11.5px;
 }
 #cloth{
-  width: 105px;
-  height: 103px;
-  border-radius: 5%;
+  width: 107px;
+  height: 105px;
+  border-radius: 5px;
 }
 #heartIcon{
   position: absolute;
@@ -36,10 +36,10 @@ const ClothBoxWrap = Styled.div`
   width: 105px;
   height: 16px;
   text-align: center;
-  margin-top: -16px;
+  margin-top: -19px;
   background-color: black;
   color: white;
-  border-radius: 15%;
+  border-radius: 10px;
   border: 1px solid black;
   opacity: 70%;
   display: none;
