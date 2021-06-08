@@ -36,7 +36,7 @@ const LoadingMainHeaderWrap = Styled.div`
   }
   #progress {
       background-color: #F79C43;
-      animation: progressBar 10s ease-in-out;
+      animation: progressBar 5s ease-in-out;
       animation-fill-mode:both; 
   }
   @keyframes progressBar {

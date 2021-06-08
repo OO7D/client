@@ -33,7 +33,8 @@ const SelectedLoading = () => {
     history.push('/recommendation/result_selected');
     // SY: Functions are not valid as a React child 에러 고치기 위해 빈 태그 return
     return <></>;
-  }, 10000);
+    // SY: 3초 뒤에 페이지 이동
+  }, 3000);
   return (
     <SelectedLoadingWrap>
       <div className='loadingContainer'>
