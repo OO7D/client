@@ -31,7 +31,7 @@ Welcome.propTypes = {
 };
 
 Welcome.defaultProps = {
-  name: '수연',
+  name: '소희',
 };
 
 export default Welcome;

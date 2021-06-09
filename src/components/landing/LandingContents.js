@@ -1,10 +1,12 @@
 import React, { useHistory } from 'react';
-import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import camera from '../../assets/camera.svg';
 import closet from '../../assets/closet.svg';
 import brand from '../../assets/brand.svg';
+import Balenciaga from '../../assets/Balenciaga.jpeg';
+import LV from '../../assets/LV.jpeg';
 import KakaoLogin from '../../lib/KakaoLogin';
+import { withRouter, Link } from 'react-router-dom';
 
 const LandingContentsWrap = Styled.div`
   * {
@@ -47,11 +49,14 @@ const LandingContentsWrap = Styled.div`
     width: 190px;
     margin-left: 25px;
   }
-  #line1 {
+  #line1, #line2 {
     text-shadow: 0.2px 0.2px white, -0.2px -0.2px #444;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
+  }
+  #line1 {
+    width: 200px;
   }
   #landing-title {
       font-size: 20px;
@@ -178,16 +183,16 @@ const LandingContents = () => {
           </div>
         </div>
         <div id="brand-description">
-          <div id="line1">
+          <div id="line2">
             <span style={{ color: '#F79C43' }}>당신</span>에게 어울리는{' '}
             <span style={{ color: '#F79C43' }}>패션 브랜드</span>는?
           </div>
           <div id="brand-container">
             <img id="brand" src={brand} alt="brand" />
-            <img id="brand" src={brand} alt="brand" />
-            <img id="brand" src={brand} alt="brand" />
+            <img id="brand" src={Balenciaga} alt="Balenciaga" />
+            <img id="brand" src={LV} alt="LV" />
           </div>
-          <Link to="/test">
+          <Link to="/mind_test">
             <Button>
               <h2>심리테스트 하러 가기</h2>
             </Button>
@@ -209,4 +214,4 @@ const LandingContents = () => {
   );
 };
 
-export default LandingContents;
+export default withRouter(LandingContents);
