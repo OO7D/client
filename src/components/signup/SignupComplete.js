@@ -251,7 +251,7 @@ const SignupComplete = () => {
           <div id="complete-subtitle">
             <Welcome />
             <Button>
-              <Link to="/test">
+              <Link to="/preference_test">
                 <h2>선호도 테스트 하러 가기</h2>
               </Link>
             </Button>
