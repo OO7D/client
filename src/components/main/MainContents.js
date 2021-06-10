@@ -93,7 +93,7 @@ const MainContents = ({ history }) => {
             <i id="mindTest" className="fas fa-clipboard-list"></i>
             <h2>심리테스트</h2>
           </div>
-          <div id="icon4" onClick={() => history.push('/recommendatioin')}>
+          <div id="icon4" onClick={() => history.push('/recommendation')}>
             <i id="recommend" className="fas fa-tshirt"></i>
             <h2>옷 추천</h2>
           </div>
