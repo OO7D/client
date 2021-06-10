@@ -73,9 +73,9 @@ const ClothBoxSelectedWrap = Styled.div`
   font-weight: bold;
 }
 #category{
-  width: 60px;
+  width: 65px;
   height: 15px;
-  margin-left: 60px;
+  margin-left: 50px;
   margin-top: -24px;
   font-size: 9px;
   font-weight: bold;
@@ -83,7 +83,7 @@ const ClothBoxSelectedWrap = Styled.div`
 #season{
   width: 60px;
   height: 15px;
-  margin-left: 60px;
+  margin-left: 50px;
   margin-top: 1px;
   font-size: 9px;
   font-weight: bold;

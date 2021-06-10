@@ -3,7 +3,6 @@ import Styled from 'styled-components';
 import { useHistory } from 'react-router';
 import ClosetBar from '../components/closet/ClosetBar';
 import ClosetBox from '../components/closet/ClosetBox';
-import sample1 from '../assets/image/sample1.jpg';
 import deleteIcon from '../assets/delete.svg';
 import Modal from 'react-awesome-modal';
 import { withRouter } from 'react-router-dom';
@@ -70,7 +69,8 @@ const ClothSelectWrap = Styled.div`
 `;
 
 // SY: 여기서 옷 클릭할 때, 모달창 뜰 때, 확인 버튼 누를 때 id가 호출됨 (총 세 번 호출) --> useEffect?
-const ClothSelect = ({ match }, props) => {
+const ClothSelect = ({ match, imageList, visible }) => {
+  
   // SY: 모달창 확인 버튼 클릭 시 페이지 이동 및 !서버! 함수 호출
   const history = useHistory();
   let goToRec = () => {
@@ -81,27 +81,10 @@ const ClothSelect = ({ match }, props) => {
   }
   const mode = match.path === '/closet/grid' ? 'closet' : '';
   const [selected, setSelected] = useState(null);
-  console.log(selected);
-  const imageList = [
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-    sample1,
-  ];
+  const [isDelete, setIsDelete] = React.useState(false);
 
   // SY: 모달 열고 닫는 함수
-  const [isVisible, setVisible] = useState(props.visible);
+  const [isVisible, setVisible] = useState(visible);
   const openModal = () => {
     setVisible(true);
   }
@@ -121,6 +104,7 @@ const ClothSelect = ({ match }, props) => {
                 image={image}
                 setSelected={setSelected}
                 mode={mode}
+                isDelete={isDelete}
               />
             );
           })}
