@@ -22,7 +22,7 @@ const ContentsWrap = Styled.div`
       background-color: hsla(2, 88%, 76%, 0.986);
       h2 {
         color: #859594;
-        font-size: 19px;
+        font-size: 16px;
         margin-top: 40px;
       }
       #camera, #closet, #mindTest, #recommend, #myPage, #pretest {
@@ -93,7 +93,7 @@ const MainContents = ({ history }) => {
             <i id="mindTest" className="fas fa-clipboard-list"></i>
             <h2>심리테스트</h2>
           </div>
-          <div id="icon4" onClick={() => history.push('/recommendation')}>
+          <div id="icon4" onClick={() => history.push('/recommendatioin')}>
             <i id="recommend" className="fas fa-tshirt"></i>
             <h2>옷 추천</h2>
           </div>
@@ -104,7 +104,7 @@ const MainContents = ({ history }) => {
           </div>
           <div id="icon6" onClick={() => history.push('/preference_test')}>
             <img id="pretest" src={pretest} alt="pretest" />
-            <h2>선호도테스트</h2>
+            <h2 id='pretestState'>선호도테스트</h2>
           </div>
         </div>
       </ContentsWrap>
