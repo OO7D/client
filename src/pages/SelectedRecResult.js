@@ -53,9 +53,9 @@ const SelectedRecResult = () => {
   // SY: 서버를 통해 DB 정보를 가져올 수 없기에 일단은 upperState(상의), lowerState(하의), userState(사용자) 정보 생성
   const upperState = [
     {name: '쉬폰 블라우스'},
-    {category: '셔츠'},
+    {category: '셔츠/블라우스'},
     {season: '봄/가을'},
-    {color: 'white'},
+    {color: 'black'},
     {src: {blouse}},
     {fileName: 'blouse'},
     {isWebCrawl: 'false'},
@@ -67,10 +67,10 @@ const SelectedRecResult = () => {
     {name: '치마1'},
     {category: '치마'},
     {season: '봄/가을'},
-    {color: 'black'},
+    {color: 'gray'},
     {src: {skirt}},
     {fileName: 'skirt'},
-    {isWebCrawl: 'true'},
+    {isWebCrawl: 'false'},
     {href: ''},
     {selected: 'true'}
   ]

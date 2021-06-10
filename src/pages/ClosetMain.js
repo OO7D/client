@@ -62,7 +62,7 @@ const ClosetMain = ({ history, match, pic, setPic }) => {
       <div className="title">
         {mode ? (
           <p>
-            <span className="em">상민님,</span>
+            <span className="em">소희님,</span>
             <br /> 오늘은 <span>단정한 세미정장</span> 어떠세요?
           </p>
         ) : (

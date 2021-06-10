@@ -56,7 +56,7 @@ const LandingContentsWrap = Styled.div`
     font-size: 20px;
   }
   #line1 {
-    width: 200px;
+    width: 220px;
   }
   #landing-title {
       font-size: 20px;

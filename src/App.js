@@ -125,7 +125,7 @@ function App() {
         <Route
           exact
           path="/recommendation/cloth_select"
-          component={ClothSelect}
+          component={() => <ClothSelect imageList={imageList}/>}
         />
         <Route
           exact

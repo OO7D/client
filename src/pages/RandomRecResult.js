@@ -5,8 +5,8 @@ import RandomRecText from '../components/recResult/RandomRecText';
 import RatingBar from '../components/recResult/RatingBar';
 import MakeModal from '../components/recResult/MakeModal';
 import blackFilledHeart from '../assets/recResult/blackFilledHeart.svg';
-import blouse from '../assets/blouse.png';
-import skirt from '../assets/skirt.png';
+import blouse from '../assets/blueshirt.png';
+import skirt from '../assets/skirt2.png';
 import Styled from 'styled-components';
 
 const RandomRecResultWrap = Styled.div`
@@ -52,24 +52,24 @@ const RandomRecResult = () => {
   const recMethod = 'random';
   // SY: 서버를 통해 DB 정보를 가져올 수 없기에 일단은 upperState(상의), lowerState(하의), userState(사용자) 정보 생성
   const upperState = [
-    { name: '쉬폰 블라우스' },
-    { category: '셔츠' },
+    { name: '블라우스3' },
+    { category: '셔츠/블라우스' },
     { season: '봄/가을' },
-    { color: 'white' },
+    { color: 'blue' },
     { src: { blouse } },
     { fileName: 'blouse' },
-    { isWebCrawl: 'false' },
+    { isWebCrawl: 'true' },
     { href: 'https://www.naver.com/' },
   ];
 
   const lowerState = [
-    { name: '치마1' },
+    { name: '치마2' },
     { category: '치마' },
     { season: '봄/가을' },
     { color: 'black' },
     { src: { skirt } },
     { fileName: 'skirt' },
-    { isWebCrawl: 'true' },
+    { isWebCrawl: 'false' },
     { href: '' },
   ];
 
